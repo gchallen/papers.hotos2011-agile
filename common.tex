@@ -1,2 +1,13 @@
 % 16 Nov 2010 : GWA : Any special macros or other stuff for this particular
 %               paper go here.
+
+\newcounter{timeenumcounter}
+\newenvironment{timeenum}{
+  \begin{list}{\textbf{t = \arabic{timeenumcounter}}}
+    {\setlength{\leftmargin}{3em}}%
+     \setlength{\labelwidth}{3em}
+     \setlength{\itemindent}{0pt}
+     \setlength{\labelsep}{1em}
+     \usecounter{timeenumcounter}
+     \setcounter{timeenumcounter}{-1}}
+  {\end{list}}
