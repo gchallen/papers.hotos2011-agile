@@ -115,18 +115,6 @@ availability and the potential overhead of transitions between component
 ensembles we believe that devices will spend some time at the low end of
 ensemble power envelopes.
 
-\begin{figure*}[t]
-\centering
-\includegraphics{./figures/transitiongraph.pdf}
-
-\caption{\textbf{Device transitioning between component ensembles as power
-availability and demand change.} This figure is described in more detail in
-Section~\ref{section-motivatingexample}. Percentages shown are what the
-component is contributing to the total ensemble power draw.}
-
-\label{figure-transitiongraph}
-\end{figure*}
-
 We illustrate how our heterogeneous device might react to fluctuating power
 availability and demand by transitioning between component ensembles in
 Figure~\ref{figure-transitiongraph}. Imagine a wind-powered microserver made
@@ -134,47 +122,6 @@ available to mobile devices for task processing. Walking through the
 scenario:
 
 \input{./figures/transitiontable.tex}
-
-\begin{timeenum}
-
-\item With no tasks to process, the device is in a low-power state with
-\textbf{P1} and \textbf{M1} idle. Radio \textbf{R1} remains active at low
-duty cycle awaiting incoming tasks. Unused power is being stored.
-
-\item Alerted to an incoming task, the device activates high-power radio
-\textbf{R3} to rapidly receive task data and low-power Flash storage
-\textbf{S1} to store it. With 0.5~W of input power the device's power usage
-is now matching availability.
-
-\item After receiving task data, the device begins processing the task,
-reconfiguring energy usage by activating the high-power processor \textbf{P3}
-and disabling the radio \textbf{R3}.
-
-\item With power availability suddenly increasing to 1.5~W and the device
-still processing the task, it accelerates task processing by (a) activating
-the larger, faster memory chip \textbf{M3} and (b) mirroring some storage
-operations to the faster disk \textbf{S2}.
-
-\item As the device begins storing results to disk, power usage shifts
-towards I/O even as the device continues using the same component ensemble.
-
-\item While it continues to store results, power availability suddenly drops
-to 1~W. Unable to operate the fast disk \textbf{S2}, the device shifts to
-storing all results on \textbf{S1}. To reduce space on the smaller disk, it
-compresses data on the fly, resulting in higher usage of processor
-\textbf{P3}.
-
-\item Ready to return results, radio \textbf{R3} is activated, and the device
-switches to processor \textbf{P1} which is sufficient to move results from
-disk \textbf{S1} to the radio.
-
-\item When power availability falls again, the device
-disables \textbf{M3} and switches to the smaller memory chip \textbf{M1}.
-
-\item Once task results have been offloaded, the device returns to its
-low-power idle state.
-
-\end{timeenum}
 
 Examining this scenario yields additional insights. \textbf{First, ensemble
 transitions can be the result of changing availability (t = 3, t = 7), demand

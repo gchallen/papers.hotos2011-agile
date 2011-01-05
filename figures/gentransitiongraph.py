@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable,host_subplot
 
 from matplotlib import rc
-rc('font',**{'family':'serif','serif':['Palatino'],'size':'11'})
+rc('font',**{'family':'serif','serif':['Times'],'size':'10'})
 rc('text', usetex=True)
 
 Ps = ['P1','P2','P1.P2']
@@ -210,7 +210,7 @@ def drawEnsembleBars(axes, transition, left, width, orderedComponents, component
     outputPowerPercentage -= componentPercentage
     axes.bar(left + barSpace, height, width - (2 * barSpace), bottom, color=componentColors[component], edgecolor='black', linewidth=0.5, label=label)
     textX = left + (width / 2)
-    textY = bottom + (height / 2)
+    textY = bottom + (height / 2) - 0.01
     if height > labelHeightCutoff:
       axes.text(textX, textY,
                 (r'{\footnotesize{\bf %s} (%d\%%)}' % (component,
@@ -220,7 +220,7 @@ def drawEnsembleBars(axes, transition, left, width, orderedComponents, component
       arrowX = textX
       if bottom == 0.0:
         arrowY = 0.0
-        textY = arrowY - arrowBottomLength
+        textY = arrowY - arrowBottomLength - 0.005
       else:
         arrowY = bottom + height
         textY = arrowY + arrowTopLength
@@ -244,7 +244,7 @@ def drawEnsembleBars(axes, transition, left, width, orderedComponents, component
 XPoints = numpy.arange(traceStart, traceEnd, traceResolution)
 figure = plt.figure()
 transitionAx = host_subplot(111)
-transitionAx.plot(XPoints, generatePowerPoints(transitions, XPoints), color='black', lw=3.0, ls="--", label=r'{\footnotesize \textbf{Available Power}}')
+transitionAx.plot(XPoints, generatePowerPoints(transitions, XPoints), color='black', lw=2.0, ls="--", label=r'{\footnotesize \textbf{Available Power}}')
 
 for i,transition in enumerate(transitions):
   doLabels = False
@@ -279,7 +279,7 @@ transitionAx.set_xlabel(r'{\bf Time}')
 transitionAx.set_ylabel(r'{\bf Power (W)}')
 
 divider = make_axes_locatable(transitionAx)
-labelAx = divider.append_axes("top", size=0.3, pad=0.0)
+labelAx = divider.append_axes("top", size=0.15, pad=0.0)
 labelAx.set_xticks([])
 labelAx.set_yticks([])
 labelAx.axis([0, traceEnd, 0, 1.0])
@@ -290,22 +290,22 @@ labelAx.text(0.5, textY,
 labelAx.axvline(1.0, color='black', linewidth=0.5)
 transitionAx.axvline(1.0, color='black', ls=':', linewidth=0.1, zorder=-1)
 labelAx.text(1.5, textY,
-             r'{\small \bf \begin{center}Receive\\Task\end{center}}',
+             r'{\small \bf Receive}',
              horizontalalignment='center', verticalalignment='center')
 labelAx.axvline(2.0, color='black', linewidth=0.5)
 transitionAx.axvline(2.0, color='black', ls=':', linewidth=0.1, zorder=-1)
 labelAx.text(3.0, textY,
-             r'{\small \bf Process Task}',
+             r'{\small \bf Process}',
              horizontalalignment='center', verticalalignment='center')
 labelAx.axvline(4.0, color='black', linewidth=0.5)
 transitionAx.axvline(4.0, color='black', ls=':', linewidth=0.1, zorder=-1)
 labelAx.text(5.0, textY,
-             r'{\small \bf Store Results}',
+             r'{\small \bf Store}',
              horizontalalignment='center', verticalalignment='center')
 labelAx.axvline(6.0, color='black', linewidth=0.5)
 transitionAx.axvline(6.0, color='black', ls=':', linewidth=0.1, zorder=-1)
 labelAx.text(7.0, textY,
-             r'{\small \bf Transmit Results}',
+             r'{\small \bf Transmit}',
              horizontalalignment='center', verticalalignment='center')
 labelAx.axvline(8.0, color='black', linewidth=0.5)
 transitionAx.axvline(8.0, color='black', ls=':', linewidth=0.1, zorder=-1)
@@ -313,6 +313,6 @@ labelAx.text(8.5, textY,
              r'{\small \bf Idle}',
              horizontalalignment='center', verticalalignment='center')
 
-figure.subplots_adjust(left=0.08,right=0.995,top=0.995,bottom=0.115)
-figure.set_size_inches(6.5,4.5)
+figure.subplots_adjust(left=0.08,right=0.995,top=0.995,bottom=0.125)
+figure.set_size_inches(6.5,2.5)
 figure.savefig('transitiongraph.pdf')

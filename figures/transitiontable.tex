@@ -1,27 +1,24 @@
-\begin{figure*}
+\begin{figure*}[t]
+\includegraphics{./figures/transitiongraph.pdf}
 \noindent\begin{minipage}[t]{0.5\textwidth}
-\vspace{0pt}
+\vspace{-0.05in}
 \begin{tabularx}{\columnwidth}{cX}
 
-\textbf{t} &
-\multicolumn{1}{c}{\textbf{Description}}
-\\ \toprule 
-
-0 & Awaiting tasks, \textbf{P1} and \textbf{M1} are idle, while
+\textbf{0} & Awaiting tasks, \textbf{P1} and \textbf{M1} are idle, while
 \textbf{R1} operates at low duty cycle.
 \\
 
-1 & 
+\textbf{1} & 
 Alerted to an incoming task, the device activates \textbf{R2} to rapidly
 receive task data and \textbf{S1} to store it.
 \\
 
-2 &
+\textbf{2} &
 When processing begins, energy usage is reconfigured by activating
 \textbf{P2} and disabling \textbf{R2}.
 \\
 
-3 &
+\textbf{3} &
 When availability spikes processing is accelerated by activating \textbf{M2}
 and mirroring to \textbf{S2}.
 \\
@@ -30,39 +27,39 @@ and mirroring to \textbf{S2}.
 
 \end{minipage}
 \begin{minipage}[t]{0.5\textwidth}
-\vspace{0pt}
+\vspace{-0.05in}
 
 \begin{tabularx}{\columnwidth}{cX}
 
-& \\ \toprule 
-
-4 &
+\textbf{4} &
 As results start being written to disk, power usage shifts within the same
 component ensemble.
 \\
 
-5 & 
+\textbf{5} & 
 When availability drops to 1~W, the device stores compressed results on
 \textbf{S1}.
 \\
 
-6 &
+\textbf{6} &
 To return results, \textbf{R3} is driven by \textbf{P1}.
 \\
 
-7 &
+\textbf{7} &
 When availability falls again, the device disables \textbf{M3} and
 switches to the smaller memory chip \textbf{M1}.
 \\
 
-8 &
+\textbf{8} &
 Processing is complete.
 \\
 
 \end{tabularx}
 \end{minipage}
-\caption{\small \textbf{Test.} Test}
-\label{table-transitions}
+\vspace{-0.1in}
+\caption{\normalsize \XXXnote{GWA: TODO: Fixme.}}
+
+\label{figure-transitiongraph}
 \vspace{0.10in}
 \hrule
 \vspace{-0.20in}
