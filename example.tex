@@ -1,62 +1,4 @@
-\section{Example Architecture and Scenario}
-\label{section-architectureandscenario}
-
-\input{./figures/componenttable.tex}
-
-To motivate the need for power-agile computing, we provide an example. First,
-we present a selection of components and demonstrate the tradeoffs inherent
-in each class --- processors, memory, storage, and radios. Second, we
-construct a hardware architecture consisting of two components from each
-class and show that it can operate in many possible configurations drawing
-orders-of-magnitude different amounts of power. Third, we illustrate the kind
-of power-agile adaptation this proposal aims to study, showing how a device
-might respond to fluctuating demand and availability. The example motivates
-the research questions listed in Section~\ref{section-researchquestions}.
-
-Because we are targeting mobile applications and environmentally-powered
-microservers, we surveyed a selection of components appropriate for this
-class of device. We assume it will require a processor, memory, stable
-storage, and radio. Table~\ref{table-components} summarizes the performance
-and power draw of thirteen different parts in these four classes.
-
-The relationship between power and performance is complex and varies both
-between and within each component class. The power consumption of a computing
-device under the smallest load is directly proportional to the number of
-powered transistors. Current 32- and 64-bit microprocessors incorporate as
-few as 40,000 and as many as \textit{one billion} transistors. Similar
-dynamics drive the variations in power consumption and performance found
-in other system components.
-
-Processors provide a smooth performance transition over a restricted power
-envelope using DVFS, but cannot scale to zero due to leakage current that
-increases as a function of the number of transistors. Memory chips have a
-refresh cost that scales somewhat with their size and an addition scaling
-component corresponding to usage. Storage devices differ based on whether
-they include spinning components: those that do not (Flash-based) scale power
-roughly with usage but at presently limited in their size. Today, very high
-capacity drives still use spinning platters and suffer from the high
-background power draw necessary to rotate them. Radios exhibit even more
-interesting power-performance variation because usage depends both on
-properties of the hardware and characteristics of the protocol. 3G radios
-leverage the powered infrastructure to reduce their receiving costs but pay a
-high overhead to communicate with distant base stations. 802.11 radios can
-enter power-saving mode (PSM) which leverages base station infrastructure to
-save client power. Bluetooth and 802.15.4 protocols have limited range but
-much lower power consumption balanced between both ends of the link.
-
-When compiling the numbers in Table~\ref{table-components} we ran up against
-the limited amount of available data reflecting component power consumption
-under realistic assumptions. Datasheets often omit this information, numbers
-in press releases are difficult to believe, and much of the
-publicly-available information is provided by hobbyist sites such as Tom's
-Hardware~\cite{tomshardware-www}. \textbf{We have completed the table using
-estimates based on our experience in this area.} \uline{As an appropriate
-response to the lack of this important information, we propose to develop
-useful workloads and measure component numbers and disseminate these results
-to the research community.}
-
 \begin{figure*}[t]
-\centering
 \includegraphics{./figures/componentgraph.pdf}
 
 \caption{\small \textbf{Power envelopes of all 144 2x2x2x2 device component
@@ -72,29 +14,38 @@ ensembles that might draw that much power: e.g., there are
 \label{figure-componentgraph}
 \end{figure*}
 
-Throughout the rest of the proposal we refer to a \textit{component ensemble}
-as the set of components active at a given time, constraining the possible
-ensembles to consist of (a) at least one or multiple processors and memory
-chips and (b) zero, one or multiple storage devices or radios\footnote{While
-many low-power processors come with small amounts of integrated memory, we
-have conservatively chosen to require 32~MB of RAM in order to run embedded
-versions of Linux. It is conceivable that our candidate device could enter an
-active sleep state with a micro-kernel capable of fitting in the processor's
-onboard RAM.}. Using the components presented in
-Table~\ref{table-components}, we consider a potential 2x2x2x2 architecture
-consisting of two components from each category --- \textbf{P1} and
-\textbf{P3} (processors); \textbf{M1} and \textbf{M3} (memory); \textbf{S1}
-and \textbf{S2} (storage); \textbf{R1} and \textbf{R3} (radios). We selected
-these components to allow the overall architecture to operate across a wide
-power range. It its lowest-power ensemble (P1,M1), the device has a 75~MHz
-CPU and 32~MB of RAM, draws as little as 82~mW\footnote{We recognize that the
-actual power consumption of a device integrating these components would be
-higher due to power consumed by system buses, memory controllers, and other
-essential components of a complete architecture.} and is roughly-equivalent
-to a embedded sensor node; in its highest-power ensemble with all components
-powered and active the device has multiple cores, over 1~GB of RAM, over
-320~GB of storage, and Wifi and Bluetooth. Consuming almost 2500~mW of power,
-it is similar to emerging high-end smartphones.
+\section{Example Architecture and Scenario}
+\label{section-architectureandscenario}
+
+We motivate the need for power-agility using an example. To begin, we
+assemble a component ensemble suitable for a mobile device.
+Table~\ref{table-components} summarizes properties of the parts we chose:
+eight components, two processors, memory chips, storage devices, and radios.
+
+The relationship between power and performance is complex for each component.
+Processors provide a smooth performance transition over a restricted power
+envelope using DVFS, but cannot scale to zero due to leakage current that
+increases as a function of the number of transistors. Memory chips have a
+fixed refresh cost that scales somewhat with their size and an addition
+scaling component corresponding to usage. Storage devices differ based on
+whether they include spinning components: those that do not (Flash-based)
+scale power roughly with usage but at presently limited in their size. Today,
+very high capacity drives still use spinning platters and suffer from the
+high background power draw necessary to rotate them. Radios exhibit even more
+interesting power-performance variation because usage depends both on
+properties of the hardware and characteristics of the protocol. 802.11 radios
+can enter power-saving mode (PSM) which leverages base station infrastructure
+to save client power. Bluetooth has limited range but lower power consumption
+balanced between both ends of the link.
+
+Using the components we selected allows our device to operate across a wide
+power range. It its lowest-power ensemble, the device has a 75~MHz CPU and
+32~MB of RAM, draws as little as 82~mW\footnote{Actual power consumption
+would be higher due to system buses, memory controllers, and other components
+of a complete architecture.} and is roughly-equivalent to a embedded sensor
+node; in its highest-power ensemble with all components powered and active
+the device has multiple cores, over 1~GB of RAM, over 320~GB of storage, Wifi
+and Bluetooth. Consuming almost 2.5~W, it is similar to emerging smartphones.
 
 In total our device can activate \textit{144 possible component ensembles}.
 Figure~\ref{figure-componentgraph} shows all possibilities and the power
@@ -123,6 +74,8 @@ scenario:
 
 \input{./figures/transitiontable.tex}
 
+\input{./figures/componenttable.tex}
+
 Examining this scenario yields additional insights. \textbf{First, ensemble
 transitions can be the result of changing availability (t = 3, t = 7), demand
 (t = 2, t = 6) or both.} Thus, power-agility is crucial even for systems
@@ -135,3 +88,4 @@ communication to processing. \textbf{Finally, when availability and demand
 are fluctuating, the operating system can help prepare for necessary ensemble
 transitions.} Depending on the layout and status of pages in M3 at t = 7,
 transitioning to M1 may be easy or it may be difficult.
+
