@@ -1,0 +1,232 @@
+\begin{table}[t]
+\begin{threeparttable}
+{\footnotesize
+\begin{tabularx}{\textwidth}{clrlXr}
+
+\multicolumn{1}{c}{\textbf{\large{Type}}} &
+\multicolumn{1}{c}{\textbf{\large{Name}}} &
+\multicolumn{2}{c}{\textbf{\large{Power (mW)}}} &
+\multicolumn{1}{c}{\textbf{\large{Performance}}} &
+\multicolumn{1}{c}{\textbf{\large{ID}}}
+\\ \toprule 
+
+\multirow{6}{*}{\vspace{-0.15in}\textbf{CPU}} &
+\multirow{2}{*}{ARM Cortex-M4\tnote{11}~\cite{cortexm4-web}} &
+0.9\tnote{1} & &
+75 MHz, 94 MIPS\tnote{2} &
+\multirow{2}{*}{\textbf{P1}}
+\\
+
+& & &
+15.6 &
+300 MHz, 375 MIPS
+&
+\\ \cmidrule(l){2-6}
+
+& \multirow{2}{*}{ARM Cortex-R4\tnote{11}~\cite{cortexr4-web}} &
+4.6\tnote{1} & &
+206 MHz, 342 DMIPS\tnote{2} &
+\multirow{2}{*}{\textbf{P2}}
+\\
+
+& & &
+78.8 &
+620 MHz, 1030 DMIPS
+&
+\\ \cmidrule(l){2-6}
+
+& \multirow{2}{*}{ARM Cortex-A9~\cite{cortexa9-web}} &
+23.5\tnote{1} & &
+415 MHz, 1037 DMIPS\tnote{2} &
+\multirow{2}{*}{\textbf{P3}}
+\\
+
+& & &
+400 &
+830 MHz, 2075 DMIPS
+&
+\\ \toprule
+
+\multirow{8}{*}{\vspace*{-0.15in}\textbf{Memory}} &
+\multirow{2}{*}{\textbf{32~MB} ISSI SDRAM~\cite{issi32MBsdram-datasheet}} &
+81 & &
+Refresh only &
+\multirow{2}{*}{\textbf{M1}}
+\\
+
+& & &
+108 &
+166 MHz
+&
+\\ \cmidrule(l){2-6}
+
+&
+\multirow{2}{*}{\textbf{256~MB} Micron ``Slow'' DDR2} &
+239\tnote{10} & &
+Refresh only &
+\multirow{2}{*}{\textbf{M2}}
+\\
+
+& & &
+405 &
+266 MHz, 478Mtps
+&
+\\ \cmidrule(l){2-6}
+
+&
+\multirow{2}{*}{\textbf{1~GB} Micron ``Slow'' DDR2} &
+322\tnote{10} & &
+Refresh only &
+\multirow{2}{*}{\textbf{M3}}
+\\
+
+& & &
+482 &
+266 MHz, 478Mtps
+&
+\\ \cmidrule(l){2-6}
+
+%&
+%\multirow{2}{*}{\textbf{2~GB} Micron ``Slow'' DDR2} &
+%337 & &
+%Refresh only &
+%\multirow{2}{*}{\textbf{M4}}
+%\\
+%
+%& & &
+%582 &
+%266 MHz, 478Mtps
+%&
+%\\ \cmidrule(l){2-6}
+%
+%&
+%\multirow{2}{*}{\textbf{256~MB} Micron ``Fast'' DDR2} &
+%346 & &
+%Refresh only &
+%\multirow{2}{*}{\textbf{M5}}
+%\\
+%
+%& & &
+%549 &
+%400 Mhz, 720Mtps
+%&
+%\\ \cmidrule(l){2-6}
+
+&
+\multirow{2}{*}{\textbf{1~GB} Micron ``Fast'' DDR2} &
+559\tnote{10} & &
+Refresh only &
+\multirow{2}{*}{\textbf{M4}}
+\\
+
+& & &
+835 &
+400 Mhz, 720Mtps
+&
+\\ \toprule
+
+\multirow{6}{*}{\vspace*{-0.15in}\textbf{Storage}} &
+\multirow{2}{*}{\textbf{2~GB} MicroSD Card} &
+20\tnote{5} & &
+Idle &
+\multirow{2}{*}{\textbf{S1}}
+\\
+
+& & &
+100\tnote{5} &
+25 MBps\tnote{6}
+&
+\\ \cmidrule(l){2-6}
+
+
+& \multirow{2}{*}{\textbf{64~GB} OCZ SSD} &
+200\tnote{7} & &
+Idle &
+\multirow{2}{*}{\textbf{S2}}
+\\
+
+& & &
+1000\tnote{7} &
+5.5 MBps\tnote{7}
+&
+\\ \cmidrule(l){2-6}
+
+& \multirow{2}{*}{\textbf{320~GB} Seagate HDD} &
+700\tnote{7} & &
+Idle &
+\multirow{2}{*}{\textbf{S3}}
+\\
+
+& & &
+1800\tnote{7} &
+1.6 MBps\tnote{7}
+&
+\\ \toprule
+
+\multirow{6}{*}{\vspace{-0.15in}\textbf{Radio}} &
+\multirow{2}{*}{\textbf{250~kbps}} TI CC2540 BLE & 
+6.63\tnote{2} & &
+10\% duty cycle\tnote{9} &
+\multirow{2}{*}{\textbf{R1}}
+\\
+
+& & &
+66.3\tnote{3} &
+Receive mode\tnote{3}
+& \\ \cmidrule(l){2-6}
+
+&
+\multirow{2}{*}{\textbf{179.2~kbps} EDGE 3G} &
+10\tnote{8} & &
+Idle &
+\multirow{2}{*}{\textbf{R2}}
+\\
+
+& & &
+1320\tnote{8} &
+Transmit mode
+& \\ \cmidrule(l){2-6}
+
+&
+\multirow{2}{*}{\textbf{11~Mbps} Marvell 88W8686 802.11bg} &
+30.9\tnote{2} & &
+10\% duty cycle\tnote{9} &
+\multirow{2}{*}{\textbf{R3}}
+\\
+
+& & &
+309.3\tnote{4} &
+Idle mode\tnote{4}
+& \\ \toprule
+
+\end{tabularx}
+}
+{\footnotesize
+\begin{tablenotes}
+\item [1] Optimistic estimate based on an optimistic estimate of DVFS providing 1:5 performance and
+1:17 power scaling\cite{jssc02-PowerPC-SoC}.
+\item [2] Estimated based on scaled full-power performance.
+\item [3] Receive-only in high-sensitivity mode. Transmit numbers are not
+significantly higher.
+\item [4] Transmit and receive modes have very different power
+consumption so usage is workload-dependent.
+\item [5] Estimated due to lack of publicly-available datasheets.
+\item [6] Maximum achievable.
+\item [7] Measured by Tom's Hardware~\cite{ssd-tomshardware} using a realistic read-write mixture workload.
+\item [8] Estimated numbers based on 2008
+whitepaper~\cite{option3gpower-whitepaper}.
+\item [9] Duty cycling allows the receiver to save power by shifting energy
+consumption to the sender, which has to remain online (as in 802.11
+PSM) or send longer packets (as in 802.15.4 Low-Power
+Listening~\cite{tinyos-lpl}).
+\item [10] Estimated based on Micron leakage numbers.
+\item [11] Capable of running a subset of the full instruction set architecture
+used by P3.
+\end{tablenotes}
+}
+\caption{\textbf{Performance and power consumption of various hardware
+components.} We assume voltage gating can reduce the power draw of a disabled
+component to near zero~\cite{islped-vdd-gate}.}
+\end{threeparttable}
+\label{table-components}
+\end{table}
