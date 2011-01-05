@@ -1,5 +1,6 @@
-\begin{table*}[t]
-\begin{tabularx}{\textwidth}{p{3in}p{3in}}
+\begin{figure*}
+\noindent\begin{minipage}[t]{0.5\textwidth}
+\vspace{0pt}
 {\small
 \begin{tabularx}{\columnwidth}{cX}
 
@@ -28,15 +29,13 @@ activating \textbf{M2} and mirroring to \textbf{S2}.
 
 \end{tabularx}
 }
-
-&
-
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\vspace{0pt}
 {\small
 \begin{tabularx}{\columnwidth}{cX}
 
-\textbf{t} &
-\multicolumn{1}{c}{\textbf{Description}}
-\\ \toprule 
+& \\ \toprule 
 
 4 &
 As results start being written to disk, power usage shifts within the same
@@ -44,9 +43,8 @@ component ensemble.
 \\
 
 5 & 
-When power availability suddenly drops to 1~W, the device shifts to storing
-all results on \textbf{S1}, and compresses data on the fly, resulting in
-higher usage of \textbf{P2}.
+When availability drops to 1~W, the device stores compressed results on
+\textbf{S1}.
 \\
 
 6 &
@@ -64,10 +62,10 @@ Processing is complete.
 
 \end{tabularx}
 }
-\end{tabularx}
+\end{minipage}
 \caption{\small \textbf{Test.} Test}
 \label{table-transitions}
 \vspace{0.10in}
 \hrule
 \vspace{-0.20in}
-\end{table*}
+\end{figure*}
