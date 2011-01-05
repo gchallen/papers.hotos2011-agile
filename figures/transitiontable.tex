@@ -1,15 +1,14 @@
 \begin{figure*}
 \noindent\begin{minipage}[t]{0.5\textwidth}
 \vspace{0pt}
-{\small
 \begin{tabularx}{\columnwidth}{cX}
 
 \textbf{t} &
 \multicolumn{1}{c}{\textbf{Description}}
 \\ \toprule 
 
-0 & With no tasks to process, \textbf{P1} and \textbf{M1} are idle, while
-\textbf{R1} operates at low duty cycle awaiting incoming tasks.
+0 & Awaiting tasks, \textbf{P1} and \textbf{M1} are idle, while
+\textbf{R1} operates at low duty cycle.
 \\
 
 1 & 
@@ -23,16 +22,16 @@ When processing begins, energy usage is reconfigured by activating
 \\
 
 3 &
-Responding to a spike in availability, task processing is accelerated by
-activating \textbf{M2} and mirroring to \textbf{S2}.
+When availability spikes processing is accelerated by activating \textbf{M2}
+and mirroring to \textbf{S2}.
 \\
 
 \end{tabularx}
-}
+
 \end{minipage}
 \begin{minipage}[t]{0.5\textwidth}
 \vspace{0pt}
-{\small
+
 \begin{tabularx}{\columnwidth}{cX}
 
 & \\ \toprule 
@@ -48,11 +47,11 @@ When availability drops to 1~W, the device stores compressed results on
 \\
 
 6 &
-To return results, \textbf{R3} is activated and driven using \textbf{P1}.
+To return results, \textbf{R3} is driven by \textbf{P1}.
 \\
 
 7 &
-When power availability falls again, the device disables \textbf{M3} and
+When availability falls again, the device disables \textbf{M3} and
 switches to the smaller memory chip \textbf{M1}.
 \\
 
@@ -61,7 +60,6 @@ Processing is complete.
 \\
 
 \end{tabularx}
-}
 \end{minipage}
 \caption{\small \textbf{Test.} Test}
 \label{table-transitions}
