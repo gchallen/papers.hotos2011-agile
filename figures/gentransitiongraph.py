@@ -9,30 +9,30 @@ from matplotlib import rc
 rc('font',**{'family':'serif','serif':['Palatino'],'size':'11'})
 rc('text', usetex=True)
 
-Ps = ['P1','P3','P1.P3']
-Ms = ['M1','M3','M1.M3']
+Ps = ['P1','P2','P1.P2']
+Ms = ['M1','M2','M1.M2']
 Ss = ['','S1','S2','S1.S2']
-Rs = ['','R1','R3','R1.R3']
+Rs = ['','R1','R2','R1.R2']
 
-orderedComponents = ['P1', 'P3', 'M1', 'M3', 'S1', 'S2', 'R1', 'R3']
+orderedComponents = ['P1', 'P2', 'M1', 'M2', 'S1', 'S2', 'R1', 'R2']
 
 componentColors = {'P1':'#E69999',
-                   'P3':'#E69999',
+                   'P2':'#E69999',
                    'M1':'#FFCC99',
-                   'M3':'#FFCC99',
+                   'M2':'#FFCC99',
                    'S1':'#CCFFCC',
                    'S2':'#CCFFCC',
                    'R1':'#C2D1F0',
-                   'R3':'#C2D1F0'}
+                   'R2':'#C2D1F0'}
 
 componentLabels = {'P1':'Processor',
-                   'P3':'Processor',
+                   'P2':'Processor',
                    'M1':'Memory',
-                   'M3':'Memory',
+                   'M2':'Memory',
                    'S1':'Storage',
                    'S2':'Storage',
                    'R1':'Radio',
-                   'R3':'Radio'}
+                   'R2':'Radio'}
 
 ensembles = generateEnsembles(Ps, Ms, Ss, Rs)
 

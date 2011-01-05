@@ -6,15 +6,15 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable,host_subplot
 
 from matplotlib import rc
-rc('font',**{'family':'serif','serif':['Palatino'],'size':'11'})
+rc('font',**{'family':'serif','serif':['Times'],'size':'10'})
 rc('text', usetex=True)
 
 sidebarwidth = 0.8
 
-Ps = ['P1','P3','P1.P3']
-Ms = ['M1','M3','M1.M3']
+Ps = ['P1','P2','P1.P2']
+Ms = ['M1','M2','M1.M2']
 Ss = ['','S1','S2','S1.S2']
-Rs = ['','R1','R3','R1.R3']
+Rs = ['','R1','R2','R1.R2']
 
 ensembles = generateEnsembles(Ps, Ms, Ss, Rs)
 
@@ -33,7 +33,7 @@ for ensemble in ensembles:
   left += 1
 Xmax = left
 
-orderedComponents = ['P1', 'P3', 'M1', 'M3', 'S1', 'S2', 'R1', 'R3']
+orderedComponents = ['P1', 'P2', 'M1', 'M2', 'S1', 'S2', 'R1', 'R2']
 orderedComponents.reverse()
 componentAxYticks = []
 bottom = 0
@@ -77,7 +77,7 @@ powerLegend.get_frame().set_linewidth(0.1)
 for Xgrid in Xgrids:
   powerAx.axvline(Xgrid, color='black', ls='--', linewidth=0.1)
 powerAx.axis([0, Xmax, 0, 2.5])
-powerAx.set_ylabel(r'{\bf Power (W)}')
+powerAx.set_ylabel(r'{\bf \small Power (W)}')
 
 statesAx = powerAx.twinx()
 statesAxYticks = numpy.arange(0.25,2.5,0.25)
@@ -95,10 +95,10 @@ statesAx.axis([0, Xmax, 0, 2.5])
 statesAx.set_yticks(statesAxYticks)
 for Ygrid in statesAxYticks:
   statesAx.axhline(Ygrid, color='black', ls=':', linewidth=0.1)
-statesAx.set_ylabel(r'{\bf Total Possible Ensembles}')
+statesAx.set_ylabel(r'{\bf \small Total Possible Ensembles}')
 
 divider = make_axes_locatable(powerAx)
-componentAx = divider.append_axes("bottom", size=1.0, pad=0.0, sharex=powerAx)
+componentAx = divider.append_axes("bottom", size=0.75, pad=0.0, sharex=powerAx)
 
 for ensemble in ensembles:
   left = ensemble['left']
@@ -108,7 +108,7 @@ for ensemble in ensembles:
 
 componentAx.set_xticks([])
 componentAx.set_yticks(componentAxYticks)
-componentAx.set_yticklabels([(r'{\footnotesize %s}' % o) for o in orderedComponents])
+componentAx.set_yticklabels([(r'{\scriptsize %s}' % o) for o in orderedComponents])
 for Xgrid in Xgrids:
   componentAx.axvline(Xgrid, color='black', linewidth=0.1)
 for Ygrid in componentAxYticks:
@@ -116,9 +116,9 @@ for Ygrid in componentAxYticks:
 componentAx.axis([0, Xmax, 0, componentAxYmax])
 for tick in componentAx.get_yticklines():
   tick.set_visible(False)
-componentAx.set_xlabel(r'{\bf Component Ensemble}')
-componentAx.set_ylabel(r'{\bf Component}')
+componentAx.set_xlabel(r'{\bf \small Component Ensemble}')
+componentAx.set_ylabel(r'{\bf \small Component}')
 
-figure.subplots_adjust(left=0.07,right=0.93,top=0.98,bottom=0.06)
-figure.set_size_inches(6.5,4)
+figure.subplots_adjust(left=0.07,right=0.93,top=0.98,bottom=0.08)
+figure.set_size_inches(6.5,2.5)
 figure.savefig('componentgraph.pdf')

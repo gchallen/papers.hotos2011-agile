@@ -70,4 +70,4 @@ pages: $(PDF)
 
 # 16 Nov 2010 : GWA : Phony targets.
 
-.PHONY : pages rulesclean missing-fail missing xxxnote noxxxnote clean all
+.PHONY : pages rulesclean missing-fail missing xxxnote noxxxnote clean all figures

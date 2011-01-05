@@ -3,32 +3,32 @@
 T=0.0, I=500.0, S=P1.M1.R1, O=88.5, P1=min, M1=min, R1=min
 
 # Receive notification that we have a task to process. Enable high-bandwidth
-# radio (R3) and storage device (S1) to download and store task information.
-T=1.0, I=500.0, S=P1.M1.S1.R3, O=500.0, P1=max, M1=max, S1=max, R3=rest
+# radio (R2) and storage device (S1) to download and store task information.
+T=1.0, I=500.0, S=P1.M1.S1.R2, O=500.0, P1=max, M1=max, S1=max, R2=rest
 
 # Begin processing. Computationally-intensive workload so we move to the
 # higher-power processor.
-T=2.0, I=500.0, S=P3.M1.S1, O=500.0, P3=rest, M1=max, S1=max
+T=2.0, I=500.0, S=P2.M1.S1, O=500.0, P2=rest, M1=max, S1=max
 
 # Sudden increase in power. Enable larger-memory bank and faster storage for
 # swapping.
-T=3.0, I=1500.0, S=P3.M3.S1.S2, O=1500.0, P3=max, M3=max, S1=max, S2=rest
+T=3.0, I=1500.0, S=P2.M2.S1.S2, O=1500.0, P2=max, M2=max, S1=max, S2=rest
 
 # Computationally-heavy stage finishes, begin final computation and storing
 # results to disk, mirrored to both drives. No change from above, except
 # lower processor power since computation is complete.
-T=4.0, I=1500.0, S=P3.M3.S1.S2, O=1500.0, P3=100.0, M3=max, S1=max, S2=rest
+T=4.0, I=1500.0, S=P2.M2.S1.S2, O=1500.0, P2=100.0, M2=max, S1=max, S2=rest
 
 # Sudden decrease in power. Stop I/O mirroring to drive S2 to save power.
 # Begin on-the-fly compression of data to drive S1 to improve bandwidth.
-T=5.0, I=1000.0, S=P3.M3.S1, O=982.0, P3=max, M3=max, S1=max
+T=5.0, I=1000.0, S=P2.M2.S1, O=982.0, P2=max, M2=max, S1=max
 
 # Results stored. Begin transmitting data. Use P1 for better power
-# efficiency and enable R3.
-T=6.0, I=1000.0, S=P1.M3.S1.R3, O=906.9, P1=max, M3=max, S1=max, R3=max
+# efficiency and enable R2.
+T=6.0, I=1000.0, S=P1.M2.S1.R2, O=906.9, P1=max, M2=max, S1=max, R2=max
 
-# Sudden loss of power. Disable M3, move to M1. Continue transmitting data.
-T=7.0, I=500.0, S=P1.M1.S1.R3, O=500.0, P1=max, M1=max, S1=max, R3=rest
+# Sudden loss of power. Disable M2, move to M1. Continue transmitting data.
+T=7.0, I=500.0, S=P1.M1.S1.R2, O=500.0, P1=max, M1=max, S1=max, R2=rest
 
 # Back to original state.
 T=8.0, I=500.0, S=P1.M1.R1, O=88.5, P1=min, M1=min, R1=min
