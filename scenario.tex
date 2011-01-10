@@ -1,0 +1,50 @@
+\section{Scenario}
+\label{section-scenario}
+
+\input{./figures/transitiontable.tex}
+
+We illustrate how a power-agile device might operate using a scenario. To
+incorporate both changes in power demand and availability, we imagine a
+wind-powered microserver receiving, processing, storing and offloading a
+task, while also experiencing fluctuations in power availability due to
+harvesting variation. Figure~\ref{figure-transitiongraph} describes the
+scenario in detail and illustrates our power-agile architecture transitioning
+through several component ensembles as demand and availability change. It
+shows how the per-component power allocation changes as the task moves
+through different stages, and how overall and per-component power allocations
+change to match power availability. Examining this scenario produces several
+observations which underpin the principles of power-agile operation presented
+in the next section:
+
+\begin{enumerate}
+
+\item Ensemble transitions can be the result of changing availability (t = 3,
+t = 7) or demand (t = 2, t = 6). Thus, \uline{power-agility is crucial even
+for systems designed to operate on a static or slowly-changing power budget},
+such as cell-phones, as well as for devices operating off of harvested
+energy.
+
+\item \uline{Energy usage may shift even within the same component ensemble.}
+At t = 4 moving from task processing to storing results reconfigures the
+distribution of power usage within the same component ensemble. This is a
+result of the dependency of component power consumption on usage and
+complicates the process of performing ensemble transitions, as the precise
+power draw of a given task in a different ensemble may be difficult to
+predict.
+
+\item \uline{Power-agile operating systems should anticipate ensemble
+transitions}, exploiting component heterogeneity to shift power towards
+components most useful to complete the task. At t = 2, as the task begins
+processing data the system shifts power from the radio to the CPU as demand
+shifts from communication to computation.
+
+\item \uline{Power-agile operating systems must prepare for ensemble
+transitions.} This is particularly important when power availability is
+changing or when the system anticipates that the devices is transitioning
+between states with different power requirements. Depending on the layout and
+status of pages in M2 at t = 7, when power availability changes,
+transitioning from M2 to M1 may be easy or it may be difficult. And at t = 6,
+where demand requirements change, the system should be prepared to migrate
+threads from P2 to P1.
+
+\end{enumerate}
