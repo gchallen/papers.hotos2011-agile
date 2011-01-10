@@ -17,29 +17,43 @@ ensembles that might draw that much power: e.g., there are
 \section{Example Architecture and Scenario}
 \label{section-architectureandscenario}
 
-We motivate the need for power-agility using an example. To begin, we
-assemble a component ensemble suitable for a mobile device.
-Table~\ref{table-components} summarizes properties of the parts we chose:
-eight components, two processors, memory chips, storage devices, and radios.
+To begin, we assemble a power-proportional hardware architecture suitable for
+a mobile device by choosing two components in each class --- processors,
+memory chips, storage devices and radios. While some components such as
+processors can scale performance and power this is usually over a limited
+range. Due to the realities of hardware design, the power-performance
+relationship for a given component is the result of a fixed set of design
+choices firmly embedded in the component itself. So rather than focusing on
+power-performance scaling within single chips, future power-proportional
+architectures will achieve scaling by incorporating multiple components, each
+operating efficiently within a different power-performance range.
 
-The relationship between power and performance is complex for each component.
-Processors provide a smooth performance transition over a restricted power
-envelope using DVFS, but cannot scale to zero due to leakage current that
-increases as a function of the number of transistors. Memory chips have a
-fixed refresh cost that scales somewhat with their size and an addition
-scaling component corresponding to usage. Storage devices differ based on
-whether they include spinning components: those that do not (Flash-based)
-scale power roughly with usage but at presently limited in their size. Today,
-very high capacity drives still use spinning platters and suffer from the
-high background power draw necessary to rotate them. Radios exhibit even more
-interesting power-performance variation because usage depends both on
-properties of the hardware and characteristics of the protocol. 802.11 radios
-can enter power-saving mode (PSM) which leverages base station infrastructure
-to save client power. Bluetooth has limited range but lower power consumption
-balanced between both ends of the link.
+Table~\ref{table-components} summarizes properties of the eight components we
+chose. The relationship between power and performance is complex for each
+component. Processors provide a smooth performance transition over a
+restricted power envelope using DVFS, but cannot scale to zero due to leakage
+current that increases as a function of the number of transistors. Memory
+chips have a fixed refresh cost that scales somewhat with their size and an
+addition scaling component corresponding to usage. Storage devices differ
+based on whether they include spinning components: those that do not
+(Flash-based) scale power roughly with usage but at presently limited in
+their size. Radios exhibit even more interesting power-performance variation
+because their power usage depends both on the hardware and the protocol.
+802.11 clients can enter power-saving mode (PSM) which leverages base station
+infrastructure to save client power. Bluetooth has limited range but lower
+power consumption balanced between both ends of the link.
+
 
 Using the components we selected allows our device to operate across a wide
-power range. It its lowest-power ensemble, the device has a 75~MHz CPU and
+power range. We refer to a \textit{component ensemble} as the set of
+components active at a given time, constraining the possible ensembles to
+consist of (a) at least one or multiple processors and memory chips and (b)
+zero, one or multiple storage devices or radios\footnote{While many low-power
+processors come with small amounts of integrated memory, we have
+conservatively chosen to require 32~MB of RAM in order to run embedded
+versions of Linux. It is conceivable that our candidate device could enter an
+active sleep state with a micro-kernel capable of fitting in the processor's
+onboard RAM.}. It its lowest-power ensemble, the device has a 75~MHz CPU and
 32~MB of RAM, draws as little as 82~mW\footnote{Actual power consumption
 would be higher due to system buses, memory controllers, and other components
 of a complete architecture.} and is roughly-equivalent to a embedded sensor
@@ -57,10 +71,10 @@ Incorporating more components per class would result in even more variation.
 ensembles that the device can use.} A diverse set of ensembles is available
 at most power points: a fast processor, small memory chip, and slow disk; a
 slow processor, large memory, and a fast radio; etc. Of course, not all
-possible ensembles at a given power point may be possible or make sense --- a
+possible ensembles at a given power point will be possible or sensible --- a
 processor of sufficient speed may be required to drive a high-bandwidth radio
---- but, given careful component choices, we think many will. It also may not
-make sense to operate a component ensemble at a power level insufficiently to
+--- but, given careful component choices, many will. It also may not make
+sense to operate a component ensemble at a power level insufficiently to
 allow high levels of component activity, but given the variations in load and
 availability and the potential overhead of transitions between component
 ensembles we believe that devices will spend some time at the low end of
@@ -68,9 +82,9 @@ ensemble power envelopes.
 
 We illustrate how our heterogeneous device might react to fluctuating power
 availability and demand by transitioning between component ensembles in
-Figure~\ref{figure-transitiongraph}. Imagine a wind-powered microserver made
-available to mobile devices for task processing. Walking through the
-scenario:
+Figure~\ref{figure-transitiongraph}. To incorporate both changes in power
+demand and availability, the scenario describes a wind-powered microserver
+processing and offloading a task.
 
 \input{./figures/transitiontable.tex}
 

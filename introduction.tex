@@ -1,14 +1,46 @@
 \section{Introduction}
 
-\XXXnote{GWA: TODO: FIXME.} Throughout the rest of the proposal we refer to a
-\textit{component ensemble} as the set of components active at a given time,
-constraining the possible ensembles to consist of (a) at least one or
-multiple processors and memory chips and (b) zero, one or multiple storage
-devices or radios\footnote{While many low-power processors come with small
-amounts of integrated memory, we have conservatively chosen to require 32~MB
-of RAM in order to run embedded versions of Linux. It is conceivable that our
-candidate device could enter an active sleep state with a micro-kernel
-capable of fitting in the processor's onboard RAM.}. Using the components
-presented in
+A growing class of battery-powered consumer devices are trapped between two
+trends: users' desire for better performance, and the slow pace of
+improvements in battery technology. Users want more from their phones: more
+apps, more access to data, more performance. But they don't want these things
+at the expense of traditional phone battery lifetimes or form factors.
 
-\clearpage
+Given the very gradual improvements in battery density over the last century,
+we expect that mobile devices will attempt to slip this trap through
+increasingly power-proportional hardware architectures. And because desiging
+single components that can operate efficiently over wide power-performance
+ranges is difficult, we expect that these power-proportional architectures
+will look increasingly heterogeneous, featuring \textit{multiple} processors,
+memory banks, storage devices and radios. Indeed, today's smartphones already
+feature multiple storage devices and radios with different power-performance
+characteristics, and rumors have been circulating about multi-processor
+features in the next iPhone4. Emerging power-proportional heterogeneous will
+produce devices that can occupy many different states: phones that can both
+sprint like a laptop and sleep like a wireless sensor node.
+
+But these abilities will not be effectively utilized without system support.
+This paper introduces the term \textit{power agility} to describe the ability
+of a system to efficiently operate power proportional hardware to balance
+performance and power consumption. Given increasingly heterogeneous devices,
+power agility requires not merely adjusting component parameters such as DVFS
+but activating and deactivating components in reaction to changing demand and
+availability. Energy demand changes as devices are used: the phone idle in my
+power requires much less power than when it is actively interacting with the
+user. And energy availability changes as well, either because power is
+rationed to improve device lifetime or when power is harvested from the
+environment: the wind-powered embedded micro-server has a lot of available
+energy when a breeze is up, and much less when it is still. So while
+power-proportional hardware allows the cat to sprint and sleep, it's
+power-agile software that lets it awaken instantly, spring into action, and
+maneuver deftly across the room before landing in your lap, purring.
+
+This paper outlines the principles of power-agile computing necessary to
+efficiently operate tomorrow's heterogeneous power-proportional hardware
+architectures. We begin by constructing a power-proportional device using
+multiple components to illustrate the diversity and flexibility of the state
+space provided by these architectures. Next, we walk through an example
+scenario demonstrating how a power-agile system transitions between hardware
+states as need and availability change. Finally, we use this scenario to
+develop a set of goals or principles underlying power-agile operation, and
+discuss challenges and approaches to meeting them.
