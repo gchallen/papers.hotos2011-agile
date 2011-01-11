@@ -20,11 +20,12 @@ observations which underpin the challenges presented in the next section:
 \item \uline{Operating system support is necessary to enable power agility.}
 While this may seem obvious to our community, there are hardware designs
 emerging that attempt to conceal power fluctuations from system
-software~\cite{FIXME}. This is a mistake. While these approaches may have
-some utility in tuning component-specific power-performance parameters such
-as DVFS, we believe that only the operating system has access to enough
-predictive information about application power-performance needs to execute
-potentially-costly transitions between multiple components.
+software~\cite{rangan-threadmotion}. This is a mistake. While these
+approaches may have some utility in tuning component-specific
+power-performance parameters such as DVFS, we believe that only the operating
+system has access to enough predictive information about application
+power-performance needs to execute expensive transitions between component
+ensembles.
 
 \item Ensemble transitions can be the result of changing availability (t = 3,
 t = 7) or demand (t = 2, t = 6). Thus, \uline{power-agility is crucial even

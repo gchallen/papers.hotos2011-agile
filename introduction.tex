@@ -8,20 +8,22 @@ at the expense of traditional phone battery lifetimes or form factors.
 
 Given the very gradual improvements in battery density over the last century,
 we expect that mobile devices will attempt to slip this trap through
-increasingly power-proportional hardware architectures. And because desiging
-single components that can operate efficiently over wide power-performance
-ranges is difficult, we expect that these power-proportional architectures
-will look increasingly heterogeneous, featuring \textit{multiple} processors,
-memory banks, storage devices and radios. Indeed, today's smartphones already
+increasingly power-proportional hardware
+architectures~\cite{barroso-energyproportional}. And because desiging single
+components that can operate efficiently over wide power-performance ranges is
+difficult, we expect that these power-proportional architectures will look
+increasingly heterogeneous, featuring \textit{multiple} processors, memory
+banks, storage devices and radios. Indeed, today's smartphones already
 feature multiple storage devices and radios with different power-performance
 characteristics, and rumors have been circulating about multi-processor
-features in the next iPhone4. Emerging power-proportional heterogeneous will
-produce devices that can occupy many different states: phones that can both
-sprint like a laptop and sleep like a wireless sensor node.
+features in the next iPhone4~\cite{iphone4-multicore}. Emerging
+power-proportional heterogeneous will produce devices that can occupy many
+different states: phones that can both sprint like a laptop and sleep like a
+wireless sensor node.
 
 But these abilities will not be effectively utilized without system support.
 This paper introduces the term \textit{power agility} to describe the ability
-of a system to efficiently operate power proportional hardware to balance
+of a system to efficiently operate power-proportional hardware balancing
 performance and power consumption. Given increasingly heterogeneous devices,
 power agility requires not merely adjusting component parameters such as DVFS
 but activating and deactivating components in reaction to changing demand and

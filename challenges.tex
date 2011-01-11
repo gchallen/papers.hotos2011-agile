@@ -20,7 +20,7 @@ performance concerns, where $E$ measures the average energy consumed during
 some time quantum and $\Delta$ measures a performance characteristic of
 interest to the application: the time necessary to process a block of data or
 respond to user input. Controlling the strength of the performance component
-using an exponential --- $\textrm{EDP} = E\Delta^n$ allows applications to
+using an exponential---$\textrm{EDP} = E\Delta^n$ allows applications to
 weight their prefererence for performance (large $n$) versus efficiency
 (small $n$). An interactive application may use $E\Delta^n$ whereas one
 performing background processing can use $E\sqrt{\Delta}$. Application
@@ -117,7 +117,7 @@ usage that might neuter the transition.
 \subsection{Choosing Component Ensembles}
 
 Scheduling ensemble transitions is the outgrowth of the capabilities we have
-already addressed --- metrics for evaluating application performance, an
+already addressed---metrics for evaluating application performance, an
 understanding of the complexity and cost of transitioning ensembles, and a
 way of estimating application performance in different ensembles. Assuming
 that only a single application is running on the device, scheduling ensemble
@@ -149,7 +149,7 @@ The simplest approach is to transition between the ideal ensembles while
 increasing each applications time quanta sufficient to amortize the
 transition cost. In many cases, however, we expect that this will lead to
 unacceptable interactive performance. A second possible approach is to pick
-an ensemble that produces acceptable --- but not ideal --- performance for
+an ensemble that produces acceptable---but not ideal---performance for
 both applications, potentially weighted towards the application with higher
 priority. Another option is to select an ensemble optimized for one
 application while allocating resources within that ensemble in favor of the
@@ -159,3 +159,56 @@ chip and a slower disk allocating a large portion of the memory to a buffer
 cache to improve performance for the I/O-bound application.
 
 \subsection{Preparing Ensemble Transitions}
+
+Facing the fact that ensemble transitions are a necessary part of achieving
+power-agility, the operating system has a role to play in trying to prepare
+the ground for these transitions in order to minimize their disruptiveness
+when they happen. Preparation is particularly important in the memory and
+storage hierarchy, where the location of data has a significant impact on the
+transition process. Preparation also requires that the operating system
+forecast future application demand and resource availability in order to
+estimate ensemble dwell times.
+
+Consider an example where the system is transitioning to a new ensemble by
+activating a larger memory chip with superior performance. If the system will
+be in that ensemble for a significant length of time, all applications will
+benefit from having data relocated from the smaller to the larger chip. This
+also allows the smaller chip to be eventually shut off, saving some power.
+However, if and when the device wants to disable the larger memory chip in
+order to shift power toward some other necessary component, the amount of
+data stored in the larger memory bank creates a high overhead for this
+transition.
+
+If the operating system can foresee that the larger memory bank is only going
+to see temporary use, it may try several different strategies to reduce the
+overhead of the eventual deactivation. First, if the transition is the result
+of a request by a particular application, it may elect to continue to operate
+the smaller chip for all other application while allocating new pages on the
+larger component. Once the memory-hungry application is finished with these
+pages, they can be discarded and the memory bank disabled without migrating
+much data back to the smaller chip. Another approach is to copy accessed
+pages on demand but mirror writes to both memory banks, again minimizing the
+eventual transition cost. Assuming that the smaller chip is never shut off---possible if consumes little power---the physical address space may be
+configured to always mirror a portion to both chips when the larger bank is
+active. The operating system may try to allocate memory from the mirrored
+portion of the address space for pages that have long expected lifetimes, are
+used by applications that prefer more power-efficient states, or based on
+explicit application requests. These pages will benefit from better
+performance when the larger, more power-hungry bank is active but never need
+to be migrated when it is disabled.
+
+\subsection{Datacenter Agility}
+
+We believe that data centers are more likely to achieve power-proportionality
+by enabling and disabling entire machines, not through heterogeneous
+architectures. However, future datacenters may consist of multiple
+\textit{classes} of machines tuned for different
+tasks~\cite{chun-hybriddatacenters}: beefy servers loaded with high-power
+processors, huge memory banks and extremely fast drives;
+Amdahl-blade~\cite{szalay-amdahl} or FAWN-like~\cite{andersen-fawn} ``wimpy''
+nodes with low-power processors and Flash drives; as well as other hybrids
+tuned for different tasks. If this is the case, then operating these server
+ensembles will share many of the same challenges we have outlined. A notable
+difference and additional challenge will be that when disabling a machine, any
+application processes present on that device can be reallocated to multiple,
+rather than one, new machine.
