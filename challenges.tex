@@ -1,12 +1,161 @@
-\section{Principles of Agility}
+\section{Challenges}
 
-Based on the observations in the previous section we formulate four
-principles of power-agile systems --- balance, coordination, speed and
-reflexes. This section presents each principle and discuss it in the context
-of the operating system's role in preparing for, selecting, and executing
-ensemble transitions.
+Based on the observations in the previous section we examine the challenges
+inherent to power-agile computing. These are related to three fundamental
+roles that the operating system has to play in operating power-agile
+hardware: preparing for, selecting, and executing ensemble transitions. In
+addition, traditional problems of scheduling and resource allocation are
+complicated by the fact that the properties of the underlying hardware can
+change as well.
 
-\subsection{Balance}
-\subsection{Coordination}
-\subsection{Speed}
-\subsection{Reflexes}
+\subsection{Measuring Efficiency}
+
+Understanding performance differences between component ensembles requires
+that applications have some way of communicating their relative power and
+performance weightings to the operating system. This is necessary to
+estimating how application performance and power efficiency will vary across
+different component ensembles. We believe that variants of the Energy-Delay
+product used in circuit design may be appropriate for combining power and
+performance concerns, where $E$ measures the average energy consumed during
+some time quantum and $\Delta$ measures a performance characteristic of
+interest to the application: the time necessary to process a block of data or
+respond to user input. Controlling the strength of the performance component
+using an exponential --- $\textrm{EDP} = E\Delta^n$ allows applications to
+weight their prefererence for performance (large $n$) versus efficiency
+(small $n$). An interactive application may use $E\Delta^n$ whereas one
+performing background processing can use $E\sqrt{\Delta}$. Application
+metrics are likely to change over time as well, as applications move through
+different stages or respond to user input.
+
+\subsection{Executing Ensemble Transitions}
+
+Transitions between ensembles forms the basis for adjusting the underlying
+architecture as application demand and power availability change. These
+transitions, however, may be complicated, requiring disabling or
+transitioning between components, and consume energy themselves. Below we
+list, for each component class, the relative difficulty and energy cost of a
+component transition and a brief description of what it might entail:
+
+\begin{itemize}
+
+\item \textbf{Processor:} Difficulty: \textit{high}, Cost: \textit{medium}.
+Transitioning between processors, even ones with highly-compatible
+instruction sets, requires migrating process state, correcting for
+differences between the two processors in terms of registers or other
+features, and potentially reloading new process executables that enable or
+disable certain instructions.
+
+\item \textbf{Memory:} Difficulty: \textit{medium}, Cost: \textit{high}.
+Transitioning to a smaller chip requires migrating some data directly to the
+new memory area, flushing other data to the backing store, and trimming the
+size of kernel buffers. Transitioning to a larger chip requires migrating
+data from the smaller chip.
+
+\item \textbf{Storage:} Difficulty: \textit{low}, Cost: \textit{low}.
+Disabling requires writing out dirty buffers. Enabling will cause a
+performance dip while caches fill.
+
+\item \textbf{Radio:} Difficulty: \textit{medium}, Cost: \textit{medium}.
+Disabling requires flushing any outstanding buffers, closing connections and
+potentially coordinating with the receiver to move together to a new radio
+technology. Enabling may require association (potentially costly, depending
+on the protocol) and a period of channel estimation before link parameters
+necessary for efficient operation can be determined.
+
+\end{itemize}
+
+The cost and complexity of these transitions has significant implications for
+the challenges that follow.
+
+\subsection{Predicting Ensemble Performance}
+
+Given the large number of varied component ensembles heterogeneous
+power-proportional architectures can be in, choosing the right one is a
+critical part of effective power-agile operation. Predicting the performance
+of a given application across ensembles is critical to ensemble selection.
+
+Assuming an application with expressed power-performance preferences
+$E\Delta^n$, we expect both $E$ and $\Delta$ to vary across ensembles. The
+most direct way to determine this variance would be to run the application on
+many different ensembles. However, given the size of the state space and the
+overhead of ensemble transitions this is infeasible at run time. However,
+this process could be performed offline using realistic interaction traces
+and the binary annotated with the results.
+
+Another annotation-based approach is to have application executables include
+hints about performance characteristics important to various stages. When
+transmitting large amounts of information, a hint might be inserted alerting
+the system to the imminent need for an energy-efficient high-bandwidth radio.
+This approach benefits from not requiring offline processing while being
+generic enough to be suitable for varied heterogeneous architectures.
+
+\subsection{Online Performance Estimation}
+
+If the operating system is running unannotated binaries, or application
+mixtures whose performance is difficult to predict \textit{a priori}, we
+expect that it will want to try and determine the impact of potential
+ensemble changes before performing them. In some cases, the currently
+ensemble can be \textit{artificially} constrained to estimate how performance
+might change after a component is disabled or enabled.
+
+For example, the operating system may want to disable a large memory bank to
+save power, but be concerned about the impact of this transition on the
+energy consumption of other components. If disabling the large memory chip
+causes usage of stable storage to increase dramatically, then the power
+savings that the system is trying to achieve will be lost. To try and examine
+the relationship between memory size and disk usage, the operating system can
+begin to artificially limit the amount of memory in usage by trimming pages
+and then leaving a portion of memory unallocated. It may do this in a smooth
+fashion until it is using only roughly the same amount of the larger chip as
+the smaller chip size, and then, assuming that no serious component
+relationships have been uncovered, perform the transition. This strategy is
+generally more applicable to transitions that attempt to trim power by
+disabling components, but this is also precisely where it is most useful, as
+it allows the operating system to discover relationships between component
+usage that might neuter the transition.
+
+\subsection{Choosing Component Ensembles}
+
+Scheduling ensemble transitions is the outgrowth of the capabilities we have
+already addressed --- metrics for evaluating application performance, an
+understanding of the complexity and cost of transitioning ensembles, and a
+way of estimating application performance in different ensembles. Assuming
+that only a single application is running on the device, scheduling ensemble
+transitions is simplified: the operating system can respond to the hints,
+annotations, or estimated performance of the single application. Expensive
+transitions can be weighted against the expectation of amortizing their cost
+with better performance in the new ensemble.
+
+Running multiple applications creates a new set of challenges. First, there
+is a question of achieving fairness when confronted with applications
+expressing different power-performance tradeoff metrics. The system needs to
+create incentives for applications to choose the most efficient performance
+metric producing acceptable performance. Adjusting application scheduling may
+help achieve this. The $E\Delta^2$ application is expressing a lower latency
+tolerance but should be able to run in a smaller time quanta, similar to how
+priorities and time quanta are adjusted in multilevel feedback queue
+scheduling.
+
+Choosing the correct ensemble to run the two applications in is a more
+distinct challenge. If we are lucky and the performance needs of the two
+applications are aligned, then ensemble selection is simplified: we pick an
+ensemble that works well for both applications. Ensembles that differ in
+their performance dependencies complicate the process. Assuming we have the
+energy to run a combination of both ideal ensembles, this is one approach,
+but one that will produce inefficient performance as the set of distinct
+resources needed by one application is left largely idle as the other runs.
+
+The simplest approach is to transition between the ideal ensembles while
+increasing each applications time quanta sufficient to amortize the
+transition cost. In many cases, however, we expect that this will lead to
+unacceptable interactive performance. A second possible approach is to pick
+an ensemble that produces acceptable --- but not ideal --- performance for
+both applications, potentially weighted towards the application with higher
+priority. Another option is to select an ensemble optimized for one
+application while allocating resources within that ensemble in favor of the
+other. For example, given one application that requires a high-speed disk and
+another than needs a large memory chip, we can choose to use the large memory
+chip and a slower disk allocating a large portion of the memory to a buffer
+cache to improve performance for the I/O-bound application.
+
+\subsection{Preparing Ensemble Transitions}
