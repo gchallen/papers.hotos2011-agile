@@ -1,9 +1,9 @@
 \section{Introduction}
 
-Battery-powered devices are trapped by trends. Better performance requires
-more power, battery technologies are improving
-slowly~\cite{economist-batteryhistory}, and users want their devices to last
-as long as they to today---or longer~\cite{FIXME}.
+Battery-powered devices are trapped by trends. Better performance requires more
+power, battery technologies are improving
+slowly~\cite{economist-batteryhistory}, and users want their devices to last as
+long as they to today---or longer~\cite{informationweek-batteries}.
 
 The way forward utilizes power-proportional hardware
 architectures~\cite{barroso-energyproportional} to deliver good performance
@@ -19,32 +19,31 @@ like a sensor node.
 Indeed, many devices already incorporate multiple processors, storage devices
 and radios with different power-performance characteristics. Recent research
 efforts have proposed operating system designs acknowledging this
-heterogeneity~\cite{FIXME-Barrelfish}, performance- or power-driven component
-combinations~\cite{FIXME-HybridDRAM,FIXME-ArunaWork}, approaches that harness
+heterogeneity~\cite{baumann-barrelfish}, performance- or power-driven component
+combinations~\cite{mogul-hybridnvmdram,aruna-3Gwifi}, approaches that harness
 the power efficiency of a particular set of components to a particular
-task~\cite{FIXME-FAWN,FIXME-Amdahl}, and organizing systems into multiple
-power-performance tiers~\cite{FIXME-Turducken}. Inspired by these efforts, we
+task~\cite{andersen-fawn,szalay-amdahl}, and organizing systems into multiple
+power-performance tiers~\cite{sorber-turducken}. Inspired by these efforts, we
 introduce the term \textit{power agility} to describe the ability of a system
-to operate a heterogeneous power-proportional device balancing performance
-and power consumption. Power agility is what allows the system to answer the
+to operate a heterogeneous power-proportional device balancing performance and
+power consumption. Power agility is what allows the system to answer the
 question: of all the devices I \textit{could} be, which one \textit{should} I
 be?
 
 Given increasingly heterogeneous devices, power agility requires not merely
 tuning per-component parameters such as DVFS but activating and deactivating
-entire components to react to changes in demand caused by variations in
-device usage. The idle phone in my pocket consumes less power than the one
-routing me to my destination, and while the mapping application benefits from
-a high-power radio, the game prefers a faster processor. So while
-power-proportional hardware allows the cat to sprint and sleep, it's
-power-agile software that lets it awaken instantly, spring into action, and
+entire components to react to changes in demand caused by variations in device
+usage. The idle phone in my pocket consumes less power than the one routing me
+to my destination, and while the mapping application wants the high-power
+radio, the game prefers a faster processor. So while power-proportional
+\textit{hardware} allows the cat to sprint and sleep, it's power-agile
+\textit{software} that lets it awaken instantly, spring into action, and
 maneuver deftly across the room before landing in your lap, purring.
 
-This paper outlines the principles of power-agile computing necessary to
-efficiently operate tomorrow's heterogeneous power-proportional hardware
-architectures. We begin by constructing a power-proportional device using
-multiple components to illustrate the diversity and flexibility of the state
-space provided by these architectures. Next, we walk through an example
-scenario demonstrating how a power-agile system transitions between hardware
-states as demand changes. Using this scenario, we develop a set of challenges
-inherent to power-agile operation and discuss approaches to overcoming them.
+This paper outlines the principles of power-agile computing. We begin by
+constructing a heterogeneous power-proportional device illustrate the diversity
+and flexibility of the state space inherent to these architectures. Next, we
+walk through a scenario demonstrating a power-agile system transitioning
+between hardware states as demand changes. Using this scenario, we develop a
+set of challenges inherent to power-agile operation and discuss approaches to
+overcoming them.
