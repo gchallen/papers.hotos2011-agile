@@ -27,18 +27,18 @@ particular task~\cite{andersen-fawn,szalay-amdahl}, and systems organized
 into multiple power-performance tiers~\cite{sorber-turducken}. Inspired by
 these efforts, we introduce the term \textit{power agility} to describe the
 ability of a system to operate a heterogeneous power-proportional device
-balancing performance and power consumption. Power agility is what allows the
-system to answer the question: of all the devices I \textit{could} be, which
-one \textit{should} I be?
+balancing performance and power consumption.
 
 Given increasingly heterogeneous devices, power agility requires not merely
-tuning per-component parameters such as DVFS but activating and deactivating
-entire components to react to changes in demand caused by variations in device
-usage. The idle phone in my pocket consumes less power than the one routing me
-to my destination, and while the mapping application wants the high-power
-radio, the game prefers a faster processor. So while power-proportional
-\textit{hardware} allows the device to sprint and sleep, power-agile
-\textit{software} guides it nimbly between states in response to demand.
+adjusting individual components but activating and deactivating them to react
+to changes in demand caused by variations in device usage. The idle phone in
+my pocket consumes less power than the one routing me to my destination, and
+while the mapping application wants the high-power radio, the game prefers a
+faster processor. So while power-proportional \textit{hardware} allows the
+device to sprint and sleep, power-agile \textit{software} guides it nimbly
+between states in response to demand. We consider hard attempts to mask power
+fluctuations~\cite{rangan-hpca11} a mistake. Only the operating system has
+enough information to achieve power agility.
 
 This paper outlines the principles of power-agile computing. First, we
 construct a heterogeneous power-proportional device illustrating the size and

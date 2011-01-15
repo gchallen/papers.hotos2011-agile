@@ -4,23 +4,23 @@
 \vspace{-0.05in}
 \begin{tabularx}{\columnwidth}{cX}
 
-\textbf{0} & Awaiting tasks, \textbf{P1} and \textbf{M1} are idle, while
-\textbf{R1} operates at low duty cycle.
+\textbf{0} & When idle \textbf{P1} and \textbf{M1} are idled and \textbf{R1}
+operates at low duty cycle.
 \\
 
-\textbf{1} & 
-Alerted to an incoming task, the device activates \textbf{R2} to rapidly
-receive task data and \textbf{S1} to store it.
+\textbf{1} & Receiving data over \textbf{R1} the phone initiates a background
+task. The device activates \textbf{R2} to rapidly receive data and
+\textbf{S1} to store it.
 \\
 
 \textbf{2} &
-When processing begins, energy usage is reconfigured by activating
-\textbf{P2} and disabling \textbf{R2}.
+As the phone begins processing the task it activates \textbf{P2} and disables
+\textbf{R2}.
 \\
 
 \textbf{3} &
-When availability spikes processing is accelerated by activating \textbf{M2}
-and mirroring to \textbf{S2}.
+The user removes the phone from their pocket and begins interacting with an
+application, which activates \textbf{M2} and retrieves data from \textbf{S2}.
 \\
 
 \end{tabularx}
@@ -31,33 +31,33 @@ and mirroring to \textbf{S2}.
 
 \begin{tabularx}{\columnwidth}{cX}
 
-\textbf{4} &
-As results start being written to disk, power usage shifts within the same
-component ensemble.
+\textbf{4} & As the interactive application continues energy usage shifts
+from \textbf{S2} to \textbf{P2}.
 \\
 
-\textbf{5} & 
-When availability drops to 1~W, the device stores compressed results on
-\textbf{S1}.
+\textbf{5} & When the interactive application is finished with \textbf{S2} it
+is disabled.
 \\
 
-\textbf{6} &
-To return results, \textbf{R2} is driven by \textbf{P1}.
+\textbf{6} & As the interactive session completes, the phone offloads data
+using \textbf{R2} driven by \textbf{P1}.
 \\
 
-\textbf{7} &
-When availability falls again, the device disables \textbf{M2} and
-switches to the smaller memory chip \textbf{M1}.
+\textbf{7} & Background processing resumes in the same ensemble it was using
+previously.
 \\
 
 \textbf{8} &
-Processing is complete.
+The background task completes, idling the phone.
 \\
 
 \end{tabularx}
 \end{minipage}
 \vspace{-0.1in}
-\caption{\normalsize \XXXnote{GWA: TODO: Fixme.}}
+\caption{\normalsize \textbf{Scenario.} The figure and table describe the
+scenario referred to throughout Section~\ref{sec-challenges}. Bars indicate
+the total energy consumed, broken down and labeled by component. The table
+describes what is happening at each time step.}
 
 \label{figure-transitiongraph}
 \vspace{0.10in}
