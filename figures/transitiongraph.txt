@@ -10,14 +10,14 @@ T=1.0, I=500.0, S=P1.M1.S1.R2, O=500.0, P1=max, M1=max, S1=max, R2=rest
 # higher-power processor.
 T=2.0, I=500.0, S=P2.M1.S1, O=500.0, P2=rest, M1=max, S1=max
 
-# Sudden increase in power. Enable larger-memory bank and faster storage for
-# swapping.
-T=3.0, I=1500.0, S=P2.M2.S1.S2, O=1500.0, P2=max, M2=max, S1=max, S2=rest
-
 # Computationally-heavy stage finishes, begin final computation and storing
 # results to disk, mirrored to both drives. No change from above, except
 # lower processor power since computation is complete.
-T=4.0, I=1500.0, S=P2.M2.S1.S2, O=1500.0, P2=100.0, M2=max, S1=max, S2=rest
+T=3.0, I=1500.0, S=P2.M2.S1.S2, O=1500.0, P2=100.0, M2=max, S1=max, S2=rest
+
+# Sudden increase in power. Enable larger-memory bank and faster storage for
+# swapping.
+T=4.0, I=1500.0, S=P2.M2.S1.S2, O=1500.0, P2=max, M2=max, S1=max, S2=rest
 
 # Sudden decrease in power. Stop I/O mirroring to drive S2 to save power.
 # Begin on-the-fly compression of data to drive S1 to improve bandwidth.

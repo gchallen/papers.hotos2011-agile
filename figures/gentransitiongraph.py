@@ -244,7 +244,7 @@ def drawEnsembleBars(axes, transition, left, width, orderedComponents, component
 XPoints = numpy.arange(traceStart, traceEnd, traceResolution)
 figure = plt.figure()
 transitionAx = host_subplot(111)
-transitionAx.plot(XPoints, generatePowerPoints(transitions, XPoints), color='black', lw=2.0, ls="--", label=r'{\footnotesize \textbf{Available Power}}')
+#transitionAx.plot(XPoints, generatePowerPoints(transitions, XPoints), color='black', lw=2.0, ls="--", label=r'{\footnotesize \textbf{Available Power}}')
 
 for i,transition in enumerate(transitions):
   doLabels = False
@@ -289,23 +289,18 @@ labelAx.text(0.5, textY,
              horizontalalignment='center', verticalalignment='center')
 labelAx.axvline(1.0, color='black', linewidth=0.5)
 transitionAx.axvline(1.0, color='black', ls=':', linewidth=0.1, zorder=-1)
-labelAx.text(1.5, textY,
-             r'{\small \bf Receive}',
+labelAx.text(2.0, textY,
+             r'{\small \bf Background}',
              horizontalalignment='center', verticalalignment='center')
-labelAx.axvline(2.0, color='black', linewidth=0.5)
-transitionAx.axvline(2.0, color='black', ls=':', linewidth=0.1, zorder=-1)
-labelAx.text(3.0, textY,
-             r'{\small \bf Process}',
-             horizontalalignment='center', verticalalignment='center')
-labelAx.axvline(4.0, color='black', linewidth=0.5)
-transitionAx.axvline(4.0, color='black', ls=':', linewidth=0.1, zorder=-1)
+labelAx.axvline(3.0, color='black', linewidth=0.5)
+transitionAx.axvline(3.0, color='black', ls=':', linewidth=0.1, zorder=-1)
 labelAx.text(5.0, textY,
-             r'{\small \bf Store}',
+             r'{\small \bf Interactive}',
              horizontalalignment='center', verticalalignment='center')
-labelAx.axvline(6.0, color='black', linewidth=0.5)
-transitionAx.axvline(6.0, color='black', ls=':', linewidth=0.1, zorder=-1)
-labelAx.text(7.0, textY,
-             r'{\small \bf Transmit}',
+labelAx.axvline(7.0, color='black', linewidth=0.5)
+transitionAx.axvline(7.0, color='black', ls=':', linewidth=0.1, zorder=-1)
+labelAx.text(7.5, textY,
+             r'{\footnotesize \bf Background}',
              horizontalalignment='center', verticalalignment='center')
 labelAx.axvline(8.0, color='black', linewidth=0.5)
 transitionAx.axvline(8.0, color='black', ls=':', linewidth=0.1, zorder=-1)
@@ -313,6 +308,6 @@ labelAx.text(8.5, textY,
              r'{\small \bf Idle}',
              horizontalalignment='center', verticalalignment='center')
 
-figure.subplots_adjust(left=0.08,right=0.995,top=0.995,bottom=0.125)
+figure.subplots_adjust(left=0.08,right=0.995,top=0.995,bottom=0.13)
 figure.set_size_inches(6.5,2.5)
 figure.savefig('transitiongraph.pdf')
