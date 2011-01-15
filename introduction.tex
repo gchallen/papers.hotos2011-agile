@@ -5,30 +5,31 @@ power, battery technologies are improving
 slowly~\cite{economist-batteryhistory}, and users want their devices to last as
 long as they to today---or longer~\cite{informationweek-batteries}.
 
-The way forward utilizes power-proportional hardware
-architectures~\cite{barroso-energyproportional} to deliver good performance
+A way to escape this trap leverages power-proportional hardware
+architectures~\cite{barroso-energyproportional} that deliver good performance
 when needed and consume little power when idle. Because most device
 components are tuned to operate efficiently within a narrow power-performance
 range, we expect future power-proportional architectures to be increasingly
 \textit{heterogeneous}: featuring multiple different processors, memory
 banks, storage devices and radios, each component embodying a particular
 power-performance tradeoff. Heterogeneity will produce a single device that
-can morph into many others: phones that can compute like a laptop and sleep
+can morph into many others: phones that can sprint like a laptop and sleep
 like a sensor node.
 
 Indeed, many devices already incorporate multiple processors, storage devices
-and radios with different power-performance characteristics. Recent research
-efforts have proposed operating system designs acknowledging this
-heterogeneity~\cite{baumann-barrelfish}, performance- or power-driven component
-combinations~\cite{mogul-hybridnvmdram,aruna-3Gwifi}, approaches that harness
-the power efficiency of a particular set of components to a particular
-task~\cite{andersen-fawn,szalay-amdahl}, and organizing systems into multiple
-power-performance tiers~\cite{sorber-turducken}. Inspired by these efforts, we
-introduce the term \textit{power agility} to describe the ability of a system
-to operate a heterogeneous power-proportional device balancing performance and
-power consumption. Power agility is what allows the system to answer the
-question: of all the devices I \textit{could} be, which one \textit{should} I
-be?
+and radios with different power-performance characteristics. The ACPI
+specification~\cite{acpi-standard} standardizes device and global power
+states. Researchers have proposed operating system designs acknowledging this
+heterogeneity~\cite{baumann-barrelfish}, performance- or power-driven
+component combinations~\cite{mogul-hybridnvmdram,aruna-3Gwifi}, approaches
+that harness the power efficiency of a particular set of components to a
+particular task~\cite{andersen-fawn,szalay-amdahl}, and systems organized
+into multiple power-performance tiers~\cite{sorber-turducken}. Inspired by
+these efforts, we introduce the term \textit{power agility} to describe the
+ability of a system to operate a heterogeneous power-proportional device
+balancing performance and power consumption. Power agility is what allows the
+system to answer the question: of all the devices I \textit{could} be, which
+one \textit{should} I be?
 
 Given increasingly heterogeneous devices, power agility requires not merely
 tuning per-component parameters such as DVFS but activating and deactivating
@@ -36,14 +37,12 @@ entire components to react to changes in demand caused by variations in device
 usage. The idle phone in my pocket consumes less power than the one routing me
 to my destination, and while the mapping application wants the high-power
 radio, the game prefers a faster processor. So while power-proportional
-\textit{hardware} allows the cat to sprint and sleep, it's power-agile
-\textit{software} that lets it awaken instantly, spring into action, and
-maneuver deftly across the room before landing in your lap, purring.
+\textit{hardware} allows the device to sprint and sleep, power-agile
+\textit{software} guides it nimbly between states in response to demand.
 
-This paper outlines the principles of power-agile computing. We begin by
-constructing a heterogeneous power-proportional device illustrate the diversity
-and flexibility of the state space inherent to these architectures. Next, we
-walk through a scenario demonstrating a power-agile system transitioning
-between hardware states as demand changes. Using this scenario, we develop a
-set of challenges inherent to power-agile operation and discuss approaches to
-overcoming them.
+This paper outlines the principles of power-agile computing. First, we
+construct a heterogeneous power-proportional device illustrating the size and
+diversity of the state space inherent to these architectures. Next, we
+present a scenario demonstrating a power-agile responding to changes in
+demand. Using this scenario, we develop a set of challenges inherent to
+power-agile operation and discuss approaches to overcoming them.

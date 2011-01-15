@@ -3,59 +3,52 @@
 
 \input{./figures/componenttable.tex}
 
-To begin, we assemble a power-proportional hardware architecture suitable for
-a mobile device by choosing two components in each class---processors,
-memory chips, storage devices and radios. While some components such as
-processors can scale performance and power this is usually over a limited
-range. Due to the realities of hardware design, the power-performance
-relationship for a given component is the result of a fixed set of design
-choices firmly embedded in the component itself. So rather than focusing on
-power-performance scaling within single chips, future power-proportional
-architectures will achieve scaling by incorporating multiple components, each
-operating efficiently within a different power-performance range.
+To begin, we assemble a heterogeneous power-proportional device combining two
+general-purpose processors\footnote{Distinguished from task-specific
+processors like GPUs or DSPs.}, two memory chips, two storage devices and two
+radios. Table~\ref{table-components} presents the components we selected.
 
-Table~\ref{table-components} summarizes properties of the eight components we
-chose. The relationship between power and performance is complex for each
-component. Processors provide a smooth performance transition over a
-restricted power envelope using DVFS, but cannot scale to zero due to leakage
-current that increases as a function of the number of transistors. Memory
-chips have a fixed refresh cost that scales somewhat with their size and an
-addition scaling component corresponding to usage. Storage devices differ
-based on whether they include spinning components. Flash drives do not and
-hence scale power roughly with usage but are presently limited in size.
-Radios exhibit even more interesting power-performance variation because
-their power usage depends both on the hardware and the protocol. 802.11
-clients can enter power-saving mode (PSM) which leverages base station
-infrastructure to save client power. Bluetooth has limited range but lower
-power consumption balanced between both ends of the link.
+The relationship between power and performance varies for each component.
+Processors may transition smoothly over a restricted power envelope using
+DVFS, but cannot scale to zero due to leakage current. Memory chips have a
+constant refresh cost scaling roughly with size plus additional power draw
+corresponding to usage. Storage devices differ based on whether they include
+spinning components. Flash drives do not and scale approximately with usage
+but are limited in size. Radios may exhibit even more power-performance
+variation because their power usage depends both on the hardware and the
+protocol. 802.11 clients can enter power-saving mode (PSM) which uses base
+station buffering to save power. Bluetooth has limited range but lower power
+consumption balanced between both sides of the link.
 
-Using the components we selected allows our device to operate across a wide
-power range. We refer to a \textit{component ensemble} as the set of
-components active at a given time, constraining the possible ensembles to
-consist of (a) at least one or multiple processors and memory chips and (b)
-zero, one or multiple storage devices or radios\footnote{While many low-power
-processors come with small amounts of integrated memory, we have
+We define a \textit{component ensemble} as the set of components currently
+active, constraining the set of valid ensembles to include only ones that can
+support the device operating system. For our example, these include (a) one
+or both processors, (b) one or both memory chips\footnote{While many
+low-power processors come with small amounts of integrated memory, we have
 conservatively chosen to require 32~MB of RAM in order to run embedded
 versions of Linux. It is conceivable that our candidate device could enter an
 active sleep state with a micro-kernel capable of fitting in the processor's
-onboard RAM.}. It its lowest-power ensemble, the device has a 75~MHz CPU and
-32~MB of RAM, draws as little as 82~mW\footnote{Actual power consumption
-would be higher due to system buses, memory controllers, and other components
-of a complete architecture.} and is roughly-equivalent to a embedded sensor
-node; in its highest-power ensemble with all components powered and active
-the device has multiple cores, over 1~GB of RAM, over 320~GB of storage, Wifi
-and Bluetooth. Consuming almost 2.5~W, it is similar to emerging smartphones.
+onboard RAM.}, (c) zero, one or both storage devices and (d) zero, one or
+both radios. By switching between components our device can operate across a
+wide power range. It its lowest-power ensemble, the device has a 75~MHz CPU,
+32~MB of RAM, and draws 82~mW\footnote{Actual power consumption would be
+higher due to system buses, memory controllers, and other components of a
+complete architecture.} and is roughly-equivalent to a embedded sensor node.
+In its highest-power ensemble the device has multiple cores, over 1~GB of
+RAM, over 320~GB of storage, Wifi and Bluetooth. Consuming almost 2.5~W, it
+is similar to emerging smartphones.
 
 \begin{figure*}[t]
 \includegraphics{./figures/componentgraph.pdf}
 
-\caption{\small \textbf{Power envelopes of all 144 2x2x2x2 device component
+\caption{\small \textbf{Power envelopes of all 144 example device component
 ensembles.} Ensembles are sorted by increasing maximum power draw. For each
 ensemble, the bottom shows which components are active and the top displays
-the power envelope. The top 80\% of the envelope---the efficient operating
-range---is drawn in dark blue. The right axis counts the total number of
-ensembles that might draw that much power: e.g., there are
-121 ensembles that could consume 0.75~W, depending on the workload.}
+the power envelope. The top 80\% of the envelope---the most efficient
+operating range---is drawn in dark blue. The right axis counts the total
+number of ensembles that might draw that much power: e.g., there are 121
+ensembles that could consume 0.75~W, depending on the workload.}
+
 \vspace{0.10in}
 \hrule
 \vspace{-0.20in}
@@ -63,21 +56,21 @@ ensembles that might draw that much power: e.g., there are
 \end{figure*}
 
 
-In total our device can activate \textit{144 possible component ensembles}.
-Figure~\ref{figure-componentgraph} shows all possibilities and the power
-range associated with each, and illustrates several key observations. First,
-there is wide variation in the power usage of component ensembles even in an
-architecture with only two components per class. Incorporating more
-components per class would result in even more variation. Second, at any
-overall power level there are many components ensembles that the device can
-use. A diverse set of ensembles is available at most power points: a fast
-processor, small memory chip, and slow disk; a slow processor, large memory,
-and a fast radio; etc. Of course, not all possible ensembles at a given power
-point will be possible or sensible---a processor of sufficient speed may be
-required to drive a high-bandwidth radio---but, given careful component
-choices, many will. It also may not make sense to operate a component
-ensemble at a power level insufficiently to allow high levels of component
-activity, but given the variations in load and availability and the potential
-overhead of transitions between component ensembles we believe that devices
-will spend some time at the low end of ensemble power envelopes.
+This device can activate \textit{144 valid component ensembles}\footnote{3
+processor choices $\times$ 3 memory choices $\times$ 4 storage choices
+$\times$ 4 radio choices.}. Figure~\ref{figure-componentgraph} shows the
+composition and power envelope of all ensembles, and motivates two
+observations. First, there is wide variation in the power usage of component
+ensembles even in an architecture with only two components per class.
+Incorporating more components would produce even more options. Second, at any
+overall power level there are many diverse components ensembles that the
+device can use: a fast processor, small memory chip, and slow disk; a slow
+processor, large memory, and a fast radio; etc. These differ not in the
+overall power consumption but only in how they distribute power and
+performance across components, and while some ensembles may seem too weird to
+be useful, they may suit certain applications. Finally, while it may seem
+best to avoid inefficient ensembles---those achieving low utilization and a
+low active- to idle-power ratio---given the speed of temporal changes in
+demand and the overhead of ensemble transitions we expect devices to spend
+some time at the low end of ensemble power envelopes.
 
