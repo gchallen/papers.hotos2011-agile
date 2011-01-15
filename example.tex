@@ -1,4 +1,4 @@
-\section{Architecture}
+\section{Architecture and Scenario}
 \label{section-architecture}
 
 \input{./figures/componenttable.tex}
@@ -63,14 +63,14 @@ composition and power envelope of all ensembles, and motivates two
 observations. First, there is wide variation in the power usage of component
 ensembles even in an architecture with only two components per class.
 Incorporating more components would produce even more options. Second, at any
-overall power level there are many diverse components ensembles that the
-device can use: a fast processor, small memory chip, and slow disk; a slow
-processor, large memory, and a fast radio; etc. These differ not in the
-overall power consumption but only in how they distribute power and
-performance across components, and while some ensembles may seem too weird to
-be useful, they may suit certain applications. Finally, while it may seem
-best to avoid inefficient ensembles---those achieving low utilization and a
-low active- to idle-power ratio---given the speed of temporal changes in
-demand and the overhead of ensemble transitions we expect devices to spend
-some time at the low end of ensemble power envelopes.
+power level there are many diverse components ensembles the device can use: a
+fast processor, small memory chip, and slow disk; a slow processor, large
+memory, and a fast radio; etc. These differ not in their total power
+consumption but in how they distribute power and performance across
+components, and while some ensembles may seem too weird to be useful they may
+suit certain applications. Finally, while it may seem best to avoid
+inefficient ensembles---those achieving low utilization and a low active- to
+idle-power ratio---given the speed of temporal changes in demand and the
+overhead of ensemble transitions we expect devices to spend some time at the
+low end of ensemble power envelopes.
 
