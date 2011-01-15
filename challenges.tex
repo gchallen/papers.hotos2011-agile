@@ -196,19 +196,3 @@ used by applications that prefer more power-efficient states, or based on
 explicit application requests. These pages will benefit from better
 performance when the larger, more power-hungry bank is active but never need
 to be migrated when it is disabled.
-
-\subsection{Datacenter Agility}
-
-We believe that data centers are more likely to achieve power-proportionality
-by enabling and disabling entire machines, not through heterogeneous
-architectures. However, future datacenters may consist of multiple
-\textit{classes} of machines tuned for different
-tasks~\cite{chun-hybriddatacenters}: beefy servers loaded with high-power
-processors, huge memory banks and extremely fast drives;
-Amdahl-blade~\cite{szalay-amdahl} or FAWN-like~\cite{andersen-fawn} ``wimpy''
-nodes with low-power processors and Flash drives; as well as other hybrids
-tuned for different tasks. If this is the case, then operating these server
-ensembles will share many of the same challenges we have outlined. A notable
-difference and additional challenge will be that when disabling a machine, any
-application processes present on that device can be reallocated to multiple,
-rather than one, new machine.
