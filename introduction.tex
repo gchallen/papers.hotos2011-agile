@@ -7,7 +7,7 @@ long as they to today---or longer~\cite{informationweek-batteries}.
 
 A way to escape this trap leverages power-proportional hardware
 architectures~\cite{barroso-energyproportional} that deliver good performance
-when needed and consume little power when idle. Because most device
+when needed and consume little power when idle and provides all power/performance operating points in between. Because most device
 components are tuned to operate efficiently within a narrow power-performance
 range, we expect future power-proportional architectures to be increasingly
 \textit{heterogeneous}: featuring multiple different processors, memory
@@ -17,9 +17,12 @@ can morph into many others: phones that can sprint like a laptop and sleep
 like a sensor node.
 
 Indeed, many devices already incorporate multiple processors, storage devices
-and radios with different power-performance characteristics. The ACPI
-specification~\cite{acpi-standard} standardizes device and global power
-states. Researchers have proposed operating system designs acknowledging this
+and radios with different power-performance characteristics. 
+% Citation seems to be out of place
+%The ACPI
+%specification~\cite{acpi-standard} standardizes device and global power
+%states. 
+Researchers have proposed operating system designs acknowledging this
 heterogeneity~\cite{baumann-barrelfish}, performance- or power-driven
 component combinations~\cite{mogul-hybridnvmdram,aruna-3Gwifi}, approaches
 that harness the power efficiency of a particular set of components to a
@@ -36,9 +39,9 @@ my pocket consumes less power than the one routing me to my destination, and
 while the mapping application wants the high-power radio, the game prefers a
 faster processor. So while power-proportional \textit{hardware} allows the
 device to sprint and sleep, power-agile \textit{software} guides it nimbly
-between states in response to demand. We consider hard attempts to mask power
-fluctuations~\cite{rangan-hpca11} a mistake. Only the operating system has
-enough information to achieve power agility.
+between states in response to demand. We consider microarchitecture attempts to mask power
+fluctuations~\cite{rangan-hpca11} from the OS a mistake. Only the operating system has
+enough information---from user priorities to a view of all running processe---to achieve power agility.
 
 This paper outlines the principles of power-agile computing. First, we
 construct a heterogeneous power-proportional device illustrating the size and

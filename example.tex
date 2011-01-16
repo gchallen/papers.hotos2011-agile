@@ -10,9 +10,10 @@ radios. Table~\ref{table-components} presents the components we selected.
 
 The relationship between power and performance varies for each component.
 Processors may transition smoothly over a restricted power envelope using
-DVFS, but cannot scale to zero due to leakage current. Memory chips have a
-constant refresh cost scaling roughly with size plus additional power draw
-corresponding to usage. Storage devices differ based on whether they include
+DVFS, but cannot scale to zero due to leakage current. DRAM memory 
+chips have a
+constant refresh cost scaling roughly with capacity plus additional power draw
+corresponding to the rate of reads and writes. Storage devices differ based on whether or not they include
 spinning components. Flash drives do not and scale approximately with usage
 but are limited in size. Radios may exhibit even more power-performance
 variation because their power usage depends both on the hardware and the
