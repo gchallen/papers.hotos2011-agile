@@ -1,18 +1,18 @@
 \section{Introduction}
 
-Battery-powered devices are trapped by trends. Better performance requires
-more power, battery technologies are improving
+Battery-powered devices are trapped by trends. More powerful performance
+requires more power, battery technologies are improving
 slowly~\cite{economist-batteryhistory}, and users want their devices to last
 as long as they to today---or longer~\cite{informationweek-batteries}. A way
 to escape this trap leverages power-proportional hardware
 architectures~\cite{barroso-energyproportional} that scale performance and
-power consumption to perform when needed while and draw little power when
-idle. Because most device components are tuned to operate efficiently within
-a narrow power-performance range, we expect future power-proportional
+power consumption to perform when needed and draw little power when idle.
+Because most device components are tuned to operate efficiently within a
+narrow power-performance range, we expect future power-proportional
 architectures to be increasingly \textit{heterogeneous}: featuring multiple
 different processors, memory banks, storage devices and radios, each
 component embodying a particular power-performance tradeoff. Heterogeneity
-produces single devices that can morph into many others, a phone that can
+produces single devices that can morph into many others: a phone that can
 sprint like a laptop and sleep like a sensor node.
 
 Today many devices already incorporate multiple processors, storage devices
@@ -20,11 +20,11 @@ and radios with different power-performance characteristics. Researchers have
 proposed operating system designs acknowledging this
 heterogeneity~\cite{baumann-barrelfish}, performance- or power-driven
 component combinations~\cite{mogul-hybridnvmdram,aruna-3Gwifi}, approaches
-harnessing efficiency of a particular set of components at performing a
-certain task~\cite{andersen-fawn,szalay-amdahl}, and systems organized into
-multiple power-performance tiers~\cite{sorber-turducken}. Inspired by these
-efforts, we introduce the term \textit{power agility} to describe the ability
-of a system to operate a heterogeneous power-proportional device balancing
+harnessing the efficiency of a particular set of components for a certain
+task~\cite{andersen-fawn,szalay-amdahl}, and systems organized into multiple
+power-performance tiers~\cite{sorber-turducken}. Inspired by these efforts,
+we introduce the term \textit{power agility} to describe the ability of a
+system to operate a heterogeneous power-proportional device balancing
 performance and power consumption.
 
 Given increasingly heterogeneous devices, power agility requires not merely
@@ -34,13 +34,14 @@ my pocket consumes less power than the one routing me to my destination, and
 while the mapping application wants the high-power radio, the game prefers a
 faster processor. So while power-proportional \textit{hardware} allows the
 device to sprint and sleep, power-agile \textit{software} guides it nimbly
-between states in response to demand. We consider microarchitectural attempts to mask power
-fluctuations~\cite{rangan-hpca11} from the OS a mistake. Only the operating system has
-enough information---from user priorities to a view of all running processes---to achieve power agility.
+between states in response to demand. We consider microarchitectural attempts
+to mask power fluctuations~\cite{rangan-hpca11} from the OS a mistake. Only
+the operating system has enough information---from user priorities to a view
+of all running processes---to achieve power agility.
 
 This paper outlines the principles of power-agile computing. First, we
 construct a heterogeneous power-proportional device illustrating the size and
 diversity of the state space inherent to these architectures. Next, we
-present a scenario demonstrating a power-agile responding to changes in
-demand. Using this scenario, we develop a set of challenges inherent to
-power-agile operation and discuss approaches to overcoming them.
+present a scenario demonstrating our device responding to changes in demand.
+Using this scenario, we develop a set of challenges inherent to power-agile
+operation and discuss approaches to overcoming them.
