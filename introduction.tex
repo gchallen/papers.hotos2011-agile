@@ -1,36 +1,31 @@
 \section{Introduction}
 
-Battery-powered devices are trapped by trends. Better performance requires more
-power, battery technologies are improving
-slowly~\cite{economist-batteryhistory}, and users want their devices to last as
-long as they to today---or longer~\cite{informationweek-batteries}.
+Battery-powered devices are trapped by trends. Better performance requires
+more power, battery technologies are improving
+slowly~\cite{economist-batteryhistory}, and users want their devices to last
+as long as they to today---or longer~\cite{informationweek-batteries}. A way
+to escape this trap leverages power-proportional hardware
+architectures~\cite{barroso-energyproportional} that scale performance and
+power consumption to perform when needed while and draw little power when
+idle. Because most device components are tuned to operate efficiently within
+a narrow power-performance range, we expect future power-proportional
+architectures to be increasingly \textit{heterogeneous}: featuring multiple
+different processors, memory banks, storage devices and radios, each
+component embodying a particular power-performance tradeoff. Heterogeneity
+produces single devices that can morph into many others, a phone that can
+sprint like a laptop and sleep like a sensor node.
 
-A way to escape this trap leverages power-proportional hardware
-architectures~\cite{barroso-energyproportional} that deliver good performance
-when needed and consume little power when idle and provides all power/performance operating points in between. Because most device
-components are tuned to operate efficiently within a narrow power-performance
-range, we expect future power-proportional architectures to be increasingly
-\textit{heterogeneous}: featuring multiple different processors, memory
-banks, storage devices and radios, each component embodying a particular
-power-performance tradeoff. Heterogeneity will produce a single device that
-can morph into many others: phones that can sprint like a laptop and sleep
-like a sensor node.
-
-Indeed, many devices already incorporate multiple processors, storage devices
-and radios with different power-performance characteristics. 
-% Citation seems to be out of place
-%The ACPI
-%specification~\cite{acpi-standard} standardizes device and global power
-%states. 
-Researchers have proposed operating system designs acknowledging this
+Today many devices already incorporate multiple processors, storage devices
+and radios with different power-performance characteristics. Researchers have
+proposed operating system designs acknowledging this
 heterogeneity~\cite{baumann-barrelfish}, performance- or power-driven
 component combinations~\cite{mogul-hybridnvmdram,aruna-3Gwifi}, approaches
-that harness the power efficiency of a particular set of components to a
-particular task~\cite{andersen-fawn,szalay-amdahl}, and systems organized
-into multiple power-performance tiers~\cite{sorber-turducken}. Inspired by
-these efforts, we introduce the term \textit{power agility} to describe the
-ability of a system to operate a heterogeneous power-proportional device
-balancing performance and power consumption.
+harnessing efficiency of a particular set of components at performing a
+certain task~\cite{andersen-fawn,szalay-amdahl}, and systems organized into
+multiple power-performance tiers~\cite{sorber-turducken}. Inspired by these
+efforts, we introduce the term \textit{power agility} to describe the ability
+of a system to operate a heterogeneous power-proportional device balancing
+performance and power consumption.
 
 Given increasingly heterogeneous devices, power agility requires not merely
 adjusting individual components but activating and deactivating them to react
@@ -39,9 +34,9 @@ my pocket consumes less power than the one routing me to my destination, and
 while the mapping application wants the high-power radio, the game prefers a
 faster processor. So while power-proportional \textit{hardware} allows the
 device to sprint and sleep, power-agile \textit{software} guides it nimbly
-between states in response to demand. We consider microarchitecture attempts to mask power
+between states in response to demand. We consider microarchitectural attempts to mask power
 fluctuations~\cite{rangan-hpca11} from the OS a mistake. Only the operating system has
-enough information---from user priorities to a view of all running processe---to achieve power agility.
+enough information---from user priorities to a view of all running processes---to achieve power agility.
 
 This paper outlines the principles of power-agile computing. First, we
 construct a heterogeneous power-proportional device illustrating the size and
