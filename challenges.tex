@@ -149,9 +149,11 @@ migration.
 \label{subsec-execute}
 
 Ensemble transitions tailor the device to application demands but require
-potentially complex or energy-expensive component transitions. Below we
-outline for each component class, the complexity and cost of transitions and
-a brief description of how to perform one:
+potentially complex or energy-expensive component transitions. The ACPI
+specification~\cite{acpi-standard} standardizes per-component and overall
+power states, but does not consider the overhead of moving from component to
+component. Below we outline for each component class, the complexity and cost
+of transitions and a brief description of how to perform one:
 
 \begin{itemize}
 
