@@ -1,0 +1,131 @@
+===========================================================================
+                         HotOS XIII Review #96A
+               Updated Wednesday 2 Mar 2011 8:21:55am PST
+---------------------------------------------------------------------------
+              Paper #96: The Case for Power-Agile Computing
+---------------------------------------------------------------------------
+
+Overall merit: 5. Strong accept - I will champion this paper
+Reviewer expertise: 2. Some familiarity
+
+===== Paper summary =====
+
+The paper describes a back-of-the-envelope design for a example power-agile
+mobile phone and then discusses strategies for managing power consumption
+depending on what the user is up to. The example phone has two processors, two
+memory systems, two storage systems, and two radio systems. Taking into account
+that several of these individual components can operate at variable power
+levels themselves, the authors count 144 different, valid component assemblies
+for the phone to be using. The bulk of the paper explores strategies for
+choosing what assemblies to be using and for making the transitions between
+assemblies in power efficient ways. The paper make a compelling case that power
+agility is important and that for devices able to operate with many different
+component assemblies, so subtle problems remain to be solved to extract the
+maximum power performance.
+
+===== Comments for author =====
+
+Nice paper! I love the approach you take of imagining a power-agile mobile
+phone at a useful level of abstraction and then exploring the issue involved in
+using it effectively. I didn't understand the discussion of "measuring
+efficiency." Perhaps a few more words here and maybe better connection to table
+1 and figure 1. I can see that the problem of determining a good sequence of
+component assemblies to use in response to the activities engaged in by the
+user is going to be tricky. But you have the ability to do a lot of off line
+optimization by logging various user scenarios and then trying alternative
+sequence to discover the optimum and also the variation from optimum that bad
+choices can generate. Since users are creatures of habit, perhaps you can even
+develop custom sequences for different users by logging the behavior of each
+one and shipping the log to an offline computational facility that can develop
+a set of sequences for that user by simulating different componen! t assembly
+sequences. The sequences would then be downloaded back to the device. By
+combining offline modeling with online observation, perhaps this problem will
+become easier!
+
+===========================================================================
+                         HotOS XIII Review #96B
+                Updated Monday 28 Feb 2011 8:53:06pm PST
+---------------------------------------------------------------------------
+              Paper #96: The Case for Power-Agile Computing
+---------------------------------------------------------------------------
+
+Overall merit: 4. Accept - This is a good paper and should likely be accepted
+Reviewer expertise: 1. No familiarity
+
+===== Paper summary =====
+
+The paper discusses the challenges of building power-proportional,
+heterogeneous systems. It first uses an example heterogeneous system that the
+authors put together (a mobile device with 2 processors, 2 memory chips, 2
+storage devices, and 2 radios) to demonstrate the range of different power
+levels that a single device can consume depending on which of its components
+are active (from 82mW to 2.5W). Then it states the challenges of operating such
+a device so as to balance performance and power consumption and outlines (at a
+very high level) potential solutions.
+
+Strength: The numbers. Thanks to them, the paper makes a compelling case that
+balancing performance and power consumption in heterogeneous environments is a
+daunting task.
+
+Weaknesses:
+- Power proportionality has already been widely discussed (although, to my
+knowledge, not so much in heterogeneous environments).
+- The paper does not put forward new ideas or propose any concrete solutions.
+
+===== Comments for author =====
+
+Picking the right exponents for energy-delay products (Section 3.1) sounds like
+a hard task. These exponents will be meaningful, only if they are chosen in a
+relative manner (application A values performance more than application B,
+hence has a higher exponent). How do the authors envision that each application
+will pick its exponent? Based on a global scale?
+
+If an application is allowed to signal its needs to the system via hints
+(Section 3.2), it can abuse this mechanism to get more resources (e.g., keep
+signaling that it is about to perform a computationally intensive task to
+ensure that it is run on a fast processor). This is a likely scenario in
+iphone/android-like platforms that run potentially competing applications
+developed by different entities. How do the authors envision policing
+applications to prevent this kind of behavior? Perhaps the OS can keep track of
+each application's power consumption and periodically report that to the user
+-- that would at least expose demanding applications.
+
+On top of offline experimentation, would it make sense to employ user feedback
+to determine which ensemble/application combinations perform well? E.g., the
+user could press a red button every time they are unhappy with performance,
+then the system could flag the corresponding ensemble/application combination
+as bad.
+
+===========================================================================
+                         HotOS XIII Review #96C
+                Updated Tuesday 1 Mar 2011 4:47:42pm PST
+---------------------------------------------------------------------------
+              Paper #96: The Case for Power-Agile Computing
+---------------------------------------------------------------------------
+
+Overall merit: 5. Strong accept - I will champion this paper
+Reviewer expertise: 2. Some familiarity
+
+===== Paper summary =====
+
+Assume a world where devices have a multiplicity of hardware components for the
+same function - e.g., a high-power, high-throughput radio and a low-power slow
+one.  How could you take advantage of this?
+
+The approach used is a principled one that identifies all possible combinations
+of components being powered on/off, and works out how to use this to achieve a
+target end goal.
+
+===== Comments for author =====
+
+It took me a while to work out what "P1", "P2" (etc) meant.
+
+Please spell out all acronyms on first use (eg DVFS).
+
+I think EDP = E f(\Delta), and you are trying to achieve min(EDP). Right?  Try
+saying that before assuming the \Delta^n form.
+
+Fig 1: the top 80% -> top 20%?
+# 12 Apr 2011 : GWA : Fixed.
+
+Check capitalization in citations: they are inconsistent.
