@@ -70,7 +70,10 @@ daunting task.
 Weaknesses:
 - Power proportionality has already been widely discussed (although, to my
 knowledge, not so much in heterogeneous environments).
+# 12 Apr 2011 : GWA : This is a heterogeneous environment. We do acknowledge prior work in the introduction.
+
 - The paper does not put forward new ideas or propose any concrete solutions.
+# 12 Apr 2011 : GWA : This is true.
 
 ===== Comments for author =====
 
@@ -79,6 +82,7 @@ a hard task. These exponents will be meaningful, only if they are chosen in a
 relative manner (application A values performance more than application B,
 hence has a higher exponent). How do the authors envision that each application
 will pick its exponent? Based on a global scale?
+# 12 Apr 2011 : GWA : Addressed briefly in the text.
 
 If an application is allowed to signal its needs to the system via hints
 (Section 3.2), it can abuse this mechanism to get more resources (e.g., keep
@@ -89,6 +93,7 @@ developed by different entities. How do the authors envision policing
 applications to prevent this kind of behavior? Perhaps the OS can keep track of
 each application's power consumption and periodically report that to the user
 -- that would at least expose demanding applications.
+# 12 Apr 2011 : GWA : Addressed briefly in this section.
 
 On top of offline experimentation, would it make sense to employ user feedback
 to determine which ensemble/application combinations perform well? E.g., the
@@ -119,11 +124,14 @@ target end goal.
 ===== Comments for author =====
 
 It took me a while to work out what "P1", "P2" (etc) meant.
+# 12 Apr 2011 : GWA : Fixed.
 
 Please spell out all acronyms on first use (eg DVFS).
+# 12 Apr 2011 : GWA : Fixed.
 
 I think EDP = E f(\Delta), and you are trying to achieve min(EDP). Right?  Try
 saying that before assuming the \Delta^n form.
+# 12 Apr 2011 : GWA : Fixed.
 
 Fig 1: the top 80% -> top 20%?
 # 12 Apr 2011 : GWA : Fixed.

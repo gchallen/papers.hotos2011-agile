@@ -21,55 +21,56 @@ the underlying hardware.
 \label{subsec-measure}
 
 Determining performance differences between ensembles requires application
-metrics weighting both power and performance. We believe that variants of the
-energy-delay product---$\textrm{EDP} = E\Delta$, which the system tries to
-minimize---used in circuit design~\cite{martin-et2} may be appropriate for
-combining these concerns. $E$ measures the energy consumed during some time
-quantum and $\Delta$ measures a performance characteristic of interest to the
-application: the time necessary to process a block of data or respond to user
-input. Controlling the strength of the performance component using an
-exponential, $\textrm{EDP} = E\Delta^n$, allows applications to weight their
-preference for performance v. efficiency. In our scenario, the interactive
-application uses $E\Delta^2$---causing the system to activate
-high-performance ensembles---while the background task uses $E\sqrt{\Delta}$,
-causing the system to remain in lower-power states. Application metrics are
-likely to change over time as their needs change.
+metrics weighting both power and performance such as the energy-delay product
+(EDP) commonly used in circuit design~\cite{martin-et2}. The EDP is defined
+as $\textrm{EDP} = E\Delta$ where $E$ measures the energy consumed during
+some time quantum and $\Delta$ measures a application-specific performance
+characteristic such as the time necessary to process a block of data or
+respond to user input. The system tries to minimize the EDP for each
+application. Controlling the strength of the performance component using an
+exponential---$\textrm{EDP} = E\Delta^n$---allows applications to weight
+their preference for performance v. efficiency. In our scenario, the
+interactive application uses $E\Delta^2$ causing the system to activate
+high-performance ensembles; the background task uses $E\sqrt{\Delta}$,
+causing the system to remain in lower-power states. Ensuring that
+applications choose appropriate exponents and balancing between applications
+at run-time are challenges inherent to this approach.
 
 \subsection{Predicting Ensemble Performance}
 \label{subsec-predict}
 
 Given the size of the ensemble state space, predicting ensemble performance
-is a key part of transitions. Assuming an application with power-performance
-preference $E\Delta^n$, both $E$ and $\Delta$ will vary across ensembles: $E$
-with the cost and utilization of system components, and $\Delta$ with
-performance. The most direct way to determine power-performance is to run the
-application on many ensembles, but given the number of states and transition
-cost this is infeasible online. However, offline experimentation could
-produce binary annotations. Another approach is to have executables include
-hints about performance characteristics important to various stages. Before
-transmitting a large amount of information, a hint would alert the system to
-the imminent need for a high-bandwidth radio. While hints require programmer
-or compiler support, they may be portable across devices.
+is a key part of transitions. Assuming an application with preferred EDP
+$E\Delta^n$, both $E$ and $\Delta$ will vary across ensembles: $E$ with the
+cost and utilization of system components, and $\Delta$ with performance. The
+direct way to determine power-performance is to run the application on many
+ensembles, but given the number of states and transition cost this is
+infeasible online. However, offline experimentation could produce binary
+annotations. Another approach is to have executables include hints about
+performance characteristics important to various stages. Before transmitting
+a large amount of information, a hint would alert the system to the need for
+a high-bandwidth radio. Hints have the advantage being portable across
+devices, but they require programmer support and the system must ensure that
+applications do not abuse them to gain unfair access to resources.
 
-When running unannotated binaries, or mixtures of applications with
-complicated performance dependencies, the system may need to estimate the
-impact of ensemble changes before performing them. In some cases, the
-currently running ensemble can be \textit{artificially} constrained to
-estimate how performance might change after a component is disabled or
-enabled. For example, when moving from \textbf{M2} to \textbf{M1} at t = 7 in
-the scenario, the system might be concerned about the impact of this
-transition on the usage of \textbf{S1}. If disabling the large memory chip
-causes \textbf{S1} usage to increase dramatically, the system will fail to
-achieve the intended power reduction. To uncover a link between memory size
-and disk usage, the operating system can artificially limit the amount of
-memory in use by trimming pages from \textbf{M2}. It may do this in a smooth
-fashion until it is using only roughly the same amount of the larger chip as
-the smaller chip size, and then, assuming no serious component relationships
-have been uncovered, initiate the transition. This strategy is generally more
-applicable to transitions that attempt to trim power by disabling components,
-but this is also precisely where it is most useful, as it allows the
-operating system to discover relationships between component usage that might
-neuter power reductions.
+When running unannotated binaries or mixtures of applications with
+performance dependencies, the system may need to estimate the impact of
+ensemble changes before performing them. In some cases, the currently running
+ensemble can be \textit{artificially} constrained to estimate how performance
+might change after a component change. For example, when moving from
+\textbf{M2} to \textbf{M1} at t = 7 in the scenario, the system might be
+concerned about the impact of this transition on the usage of \textbf{S1}. If
+disabling the large memory chip causes \textbf{S1} usage to increase
+dramatically, the system will fail to achieve the intended power reduction.
+To uncover a link between memory size and disk usage, the operating system
+can artificially limit the amount of memory in use by trimming pages from
+\textbf{M2}. It may do this in a smooth fashion until it is using only
+roughly the same amount of the larger chip as the smaller chip size, and
+then, assuming no serious component relationships have been uncovered,
+initiate the transition. This strategy is more applicable to transitions that
+attempt to trim power by disabling components, but this is also when it is
+most useful, as it allows the operating system to discover relationships
+between component usage that might neuter power reductions.
 
 \subsection{Selecting Component Ensembles}
 \label{subsec-select}
@@ -148,12 +149,12 @@ migration.
 \subsection{Executing Ensemble Transitions}
 \label{subsec-execute}
 
-Ensemble transitions tailor the device to application demands but require
-potentially complex or energy-expensive component transitions. The ACPI
-specification~\cite{acpi-standard} standardizes per-component and overall
-power states, but does not consider the overhead of moving from component to
-component. Below we outline for each component class, the complexity and cost
-of transitions and a brief description of how to perform one:
+Ensemble transitions tailor the device to application demands but may require
+complex or expensive component transitions. The Advanced Configuration and
+Power Interface (ACPI) specification~\cite{acpi-standard} standardizes
+per-component and overall power states but does not consider component
+transitions. Below we outline for each component class, the complexity and
+cost of transitions and a brief description of how to perform one:
 
 \begin{itemize}
 

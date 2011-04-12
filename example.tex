@@ -4,22 +4,24 @@
 
 \input{./figures/componenttable.tex}
 
-To begin, we assemble a heterogeneous power-proportional device combining two
-general-purpose processors\footnote{Distinguished from task-specific
-processors like GPUs or DSPs.}, two memory chips, two storage devices and two
-radios. Table~\ref{table-components} presents the components we selected.
+To begin, we assemble a device combining two general-purpose
+processors\footnote{Distinguished from task-specific processors like GPUs or
+DSPs.} (P1 and P2), two memory chips (M1 and M2), two storage devices (S1 and
+S2) and two radios (R1 and R2). Table~\ref{table-components} describes each
+component.
 
 The relationship between power and performance varies for each component.
 Processors may transition smoothly over a restricted power envelope using
-DVFS, but cannot scale to zero due to leakage current. DRAM memory chips have
-a constant refresh cost scaling roughly with capacity plus additional power
-draw corresponding to the rate of reads and writes. Storage devices differ
-based on whether or not they include spinning components. Flash drives do not
-and scale approximately with usage but are limited in size. Radios exhibit
-wide power-performance variation because their usage depends both on the
-hardware and the protocol. 802.11 clients can enter power-saving mode (PSM)
-which uses base station buffering to save power. Bluetooth has limited range
-but lower power consumption balanced between both sides of the link.
+dynamic voltage and frequency scaling (DVFS), but cannot scale to zero due to
+leakage current. Memory has a constant refresh cost scaling roughly with
+capacity plus additional power draw corresponding to the rate of reads and
+writes. Storage devices differ based on whether or not they include spinning
+components. Flash drives do not and scale approximately with usage but are
+limited in size. Radios exhibit wide power-performance variation because
+their usage depends both on the hardware and the protocol. 802.11 clients can
+enter power-saving mode (PSM) which uses base station buffering to save
+power. Bluetooth has limited range but lower power consumption balanced
+between both sides of the link.
 
 We define a \textit{component ensemble} as the set of components currently
 active, constraining the set of valid ensembles to include only those that
