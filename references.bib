@@ -2,99 +2,51 @@
 @string{sosp = "SOSP"}
 @string{osdi = "OSDI"}
 
-@inbook{martin-et2,
+@techreport{martin-et2,
  author = {Martin, Alain J. and Nystr\"{o}m, Mika and P\'{e}nzes, Paul I.},
- title = {ET2: a metric for time and energy efficiency of computation},
- book = {Power aware computing},
- year = {2002},
- isbn = {0-306-46786-0},
- pages = {293--315},
- numpages = {23},
- url = {http://portal.acm.org/citation.cfm?id=783060.783076},
- acmid = {783076},
- publisher = {Kluwer Academic Publishers},
- address = {Norwell, MA, USA},
-} 
+ title = {{ET2}: A Metric for Time and Energy Efficiency of Computation},
+ year = {2001},
+ source = {http://resolver.caltech.edu/CaltechCSTR:2001.007},
+ publisher = {California Institute of Technology}}
 
 @misc{acpi-standard,
-  Author = "Hewlett-Packard Corporation and Intel Corporation and Microsoft
-    Corporation and Phoenix Technologies Ltd. and Toshiba Corporation",
+  Author = {{Hewlett-Packard} and {Intel} and {Microsoft} and {Phoenix
+    Technologies} and {Toshiba}},
   Howpublished = {\url{http://www.acpi.info/}},
-  Title = "Advanced Configuration and Power Interface"}
+  Title = {Advanced Configuration and Power Interface}}
 
 
 @inproceedings{aruna-3Gwifi,
  author = {Balasubramanian, Aruna and Mahajan, Ratul and Venkataramani, Arun},
- title = {Augmenting mobile 3G using WiFi},
- booktitle = {MobiSys '10: Proceedings of the 8th international conference on Mobile systems, applications, and services},
- year = {2010},
- isbn = {978-1-60558-985-5},
- pages = {209--222},
- location = {San Francisco, California, USA},
- doi = {http://doi.acm.org/10.1145/1814433.1814456},
- publisher = {ACM},
- address = {New York, NY, USA},
+ title = {Augmenting Mobile 3{G} Using {W}i{F}i},
+ booktitle = {MobiSys'10}
  }
 
 @inproceedings{mogul-hybridnvmdram,
  author = {Mogul, Jeffrey C. and Argollo, Eduardo and Shah, Mehul and Faraboschi, Paolo},
- title = {Operating system support for NVM+DRAM hybrid main memory},
- booktitle = {Proceedings of the 12th conference on Hot topics in operating systems},
- series = {HotOS'09},
- year = {2009},
- location = {Monte Verit\&\#224;, Switzerland},
- pages = {14--14},
- numpages = {1},
- url = {http://portal.acm.org/citation.cfm?id=1855568.1855582},
- acmid = {1855582},
- publisher = {USENIX Association},
- address = {Berkeley, CA, USA},
+ title = {Operating System Support for {NVM}+{DRAM} Hybrid Main Memory},
+ booktitle = {HotOS XII},
 } 
 
 @inproceedings{baumann-barrelfish,
  author = {Baumann, Andrew and Barham, Paul and Dagand, Pierre-Evariste and Harris, Tim and Isaacs, Rebecca and Peter, Simon and Roscoe, Timothy and Sch\"{u}pbach, Adrian and Singhania, Akhilesh},
  title = {The multikernel: a new OS architecture for scalable multicore systems},
- booktitle = {Proceedings of the ACM SIGOPS 22nd symposium on Operating systems principles},
- series = {SOSP '09},
- year = {2009},
- isbn = {978-1-60558-752-3},
- location = {Big Sky, Montana, USA},
- pages = {29--44},
- numpages = {16},
- url = {http://doi.acm.org/10.1145/1629575.1629579},
- doi = {http://doi.acm.org/10.1145/1629575.1629579},
- acmid = {1629579},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {message passing, multicore processors, scalability},
+ booktitle = {SOSP'09}
 } 
 
 @inproceedings{sorber-turducken,
  author = {Sorber, Jacob and Banerjee, Nilanjan and Corner, Mark D. and Rollins, Sami},
- title = {Turducken: hierarchical power management for mobile devices},
- booktitle = {Proceedings of the 3rd international conference on Mobile systems, applications, and services},
- series = {MobiSys '05},
- year = {2005},
- isbn = {1-931971-31-5},
- location = {Seattle, Washington},
- pages = {261--274},
- numpages = {14},
- url = {http://doi.acm.org/10.1145/1067170.1067198},
- doi = {http://doi.acm.org/10.1145/1067170.1067198},
- acmid = {1067198},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {embedded devices, energy management, low-power computing, mobile computing, pervasive computing, power management},
-} 
+ title = {Turducken: Hierarchical Power Management for Mobile Devices},
+ booktitle = {MobiSys'05}}
 
 @misc{informationweek-batteries,
   Author = "John Walko",
-  Howpublished = {\url{http://www.informationweek.com/news/showArticle.jhtml?articleID=171100095}},
-  Title = "What Do Cell Phone Users Want? Better Batteries!"}
+  Howpublished = {\url{http://bit.ly/gefaF1}},
+  Title = "What Do Cell Phone Users Want? {B}etter Batteries!"}
 
 @misc{economist-batteryhistory,
-  Author = "The Economist",
-  Howpublished = {\url{http://www.economist.com/node/10789409}},
+  Author = "{The Economist}",
+  Howpublished = {\url{http://econ.st/h9jzzk}},
   Title = "In search of the perfect battery"}
 
 @misc{iphone4-multicore,
@@ -159,7 +111,7 @@
 } 
 
 @misc{tomshardware-www,
-  Author = "Tom's Hardware",
+  Author = "{Tom's Hardware}",
   Howpublished =
   {\url{http://www.tomshardware.com/}},
   Title = {{Tom's Hardware}}}
@@ -188,41 +140,15 @@
  keywords = {dynamic voltage scaling, efficiency, energy, modelling, operating systems, power, power management},
 } 
 
-@article{szalay-amdahl,
+@inproceedings{szalay-amdahl,
  author = {Szalay, Alexander S. and Bell, Gordon C. and Huang, H. Howie and Terzis, Andreas and White, Alainna},
- title = {Low-power amdahl-balanced blades for data intensive computing},
- journal = {SIGOPS Oper. Syst. Rev.},
- volume = {44},
- issue = {1},
- month = {March},
- year = {2010},
- issn = {0163-5980},
- pages = {71--75},
- numpages = {5},
- url = {http://doi.acm.org/10.1145/1740390.1740407},
- doi = {http://doi.acm.org/10.1145/1740390.1740407},
- acmid = {1740407},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {data-intensive science, solid state disks},
-} 
+ title = {Low-Power Amdahl-Balanced Blades for Data Intensive Computing},
+ booktitle = {HotPower'09}}
 
 @inproceedings{andersen-fawn,
  author = {Andersen, David G. and Franklin, Jason and Kaminsky, Michael and Phanishayee, Amar and Tan, Lawrence and Vasudevan, Vijay},
- title = {FAWN: a fast array of wimpy nodes},
- booktitle = {Proceedings of the ACM SIGOPS 22nd symposium on Operating systems principles},
- series = {SOSP '09},
- year = {2009},
- isbn = {978-1-60558-752-3},
- location = {Big Sky, Montana, USA},
- pages = {1--14},
- numpages = {14},
- url = {http://doi.acm.org/10.1145/1629575.1629577},
- doi = {http://doi.acm.org/10.1145/1629575.1629577},
- acmid = {1629577},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {cluster computing, design, energy efficiency, flash, measurement, performance},
+ title = {FAWN: A Fast Array of Wimpy Nodes},
+ booktitle = {SOSP'09},
 } 
 
 @inproceedings{Tolia:2008:DEP:1855610.1855612,
@@ -300,15 +226,15 @@
 
 
 @misc{ssd-tomshardware,
-  Author = "Tom's Hardware",
+  Author = "{Tom's Hardware}",
   Howpublished =
-  {\url{http://www.tomshardware.com/reviews/ssd-hard-drive,1968.html}},
-  Title = {{Flash SSD Update: More Results, Answers}}}
+  {\url{http://bit.ly/ylLgD}},
+  Title = {Flash SSD Update: More Results, Answers}}
 
 @misc{cortexm4-web,
   Author = {{ARM}},
   Howpublished =
-  {\url{http://www.arm.com/products/processors/cortex-m/cortex-m4-processor.php}},
+  {\url{http://bit.ly/hs7dQ7}},
   Title = {{Cortex-M4 Processor}}}
 
 @misc{cortexr4-web,
@@ -320,13 +246,13 @@
 @misc{cortexa9-web,
   Author = {{ARM}},
   Howpublished =
-  {\url{http://www.arm.com/products/processors/cortex-a/cortex-a9.php}},
+  {\url{http://bit.ly/bHOomu}},
   Title = {{Cortex-A9 Processor}}}
 
 @misc{issi32MBsdram-datasheet,
   Author = {{ISSI}},
-  Howpublished = {\url{www.issi.com/pdf/42VM32100C.pdf}},
-  Title = {{IS42VM32100C Advanced Information}}}
+  Howpublished = {\url{http://bit.ly/eDqr3O}},
+  Title = {IS42VM32100C Advanced Information}}
 
 @misc{os161-unsw,
   Author = {{University of New South Wales}},
@@ -513,9 +439,8 @@
   
 @misc{tinyos-lpl,
 	Author = {David Moss and Jonathan Hui and Philip Levis and Jung Il Choi},
-	Howpublished = {TinyOS Extension Proposal TEP-126,    \url{http://www.tinyos.net/tinyos-2.x/doc/txt/tep126.txt}},
-	Title = {CC2420 Radio Stack},
-	Year = 2007}
+	Howpublished = {\url{http://bit.ly/gCEEZ5}},
+	Title = {TinyOS Extension Proposal {TEP}-126}}
 
 @inproceedings{fairrate-sensys08,
  author = {Fan, Kai-Wei and Zheng, Zizhan and Sinha, Prasun},

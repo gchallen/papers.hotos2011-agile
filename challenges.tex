@@ -22,14 +22,14 @@ the underlying hardware.
 
 Determining performance differences between ensembles requires application
 metrics weighting both power and performance such as the energy-delay product
-(EDP) commonly used in circuit design~\cite{martin-et2}. The EDP is defined
+(EDP), commonly used in circuit design~\cite{martin-et2}. The EDP is defined
 as $\textrm{EDP} = E\Delta$ where $E$ measures the energy consumed during
 some time quantum and $\Delta$ measures a application-specific performance
 characteristic such as the time necessary to process a block of data or
 respond to user input. The system tries to minimize the EDP for each
 application. Controlling the strength of the performance component using an
 exponential---$\textrm{EDP} = E\Delta^n$---allows applications to weight
-their preference for performance v. efficiency. In our scenario, the
+their preference for performance or efficiency. In our scenario, the
 interactive application uses $E\Delta^2$ causing the system to activate
 high-performance ensembles; the background task uses $E\sqrt{\Delta}$,
 causing the system to remain in lower-power states. Ensuring that
@@ -77,10 +77,9 @@ between component usage that might neuter power reductions.
 
 Scheduling ensemble transitions relies on the capabilities already
 presented---metrics for evaluating performance and predicting performance
-across ensembles. When running only a single application the system can
-respond directly to its hints, annotations, or estimated performance,
-weighting possible improvements in efficiency against the cost of
-transitioning ensembles.
+across ensembles. When running a single application the system can respond
+directly to its estimated performance, weighting efficiency improvements
+against ensemble transition costs.
 
 Running multiple applications creates new challenges. First, there is the
 question of how to assign performance metrics to applications. In our
