@@ -1,5 +1,6 @@
-START = xxxnote
+START = noxxxnote nodraft blue
 END = missing
+PYTEX = $(shell pwd)/pytex/
 CLASS = $(PYTEX)/cls/usenix.sty
 
 all: paper ABSTRACT

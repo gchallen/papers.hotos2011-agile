@@ -1,16 +1,37 @@
 \input{./include/start.tex}
+
+\def\theconference{HotOS'11}
+\def\thetitle{\Large \bf The Case for Power-Agile Computing}
+\def\theauthors{%
+Geoffrey Challen and Mark Hempstead
+}
+
 \begin{document}
+
+\ifdefined\isblue
+\begin{textblock}{1}(5.9,0)
+\noindent\href{http://blue.cse.buffalo.edu}{\includegraphics[width=0.6in]{./figures/logos/blue.jpg}}
+\end{textblock}
+\else
+\fi
+
 \date{}
 
-\title{\Large \bf The Case for Power-Agile Computing}
+\title{\thetitle}
 
-%for single author (just remove % characters)
 \author{
 {\rm Geoffrey Challen}\\
-MIT, SUNY Buffalo\thanks{Beginning 7/1/2011.}
+MIT, University at Buffalo\thanks{Beginning 7/1/2011.}
 \and
 {\rm Mark Hempstead}\\
 Drexel University
+}
+
+\hypersetup{
+  pdfinfo={
+    Title={\thetitle},
+    Author={\theauthors}
+  },
 }
 
 \maketitle
@@ -22,7 +43,7 @@ Drexel University
 
 {\footnotesize
 \bibliographystyle{acm}
-\bibliography{references,mh_add_pub}
+\bibliography{references,markhempstead}
 }
 
 \end{document}

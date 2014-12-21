@@ -15,15 +15,21 @@
   pdfdisplaydoctitle=true,
   pdfborder={0 0 0}
 }
-\usepackage[all]{hypcap}
-
-\pdfinfo{
-   /Author ()
-   /Title  ()
-}
-
 \usepackage{bibspacing}
 \setlength{\bibspacing}{\baselineskip}
 
+\usepackage[absolute]{textpos}
+
+\setlength{\TPHorizModule}{1in}
+\setlength{\TPVertModule}{1in}
+\textblockorigin{1in}{1in}
+
+\usepackage[all]{hypcap}
+
+\paperheight 11in
+\paperwidth 8.5in
+
 \input{.xxxnote}
+\input{.draft}
+\input{.blue}
 \input{common.tex}
