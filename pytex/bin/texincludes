@@ -1,0 +1,105 @@
+#!/usr/bin/env python
+
+import sys,re,glob,StringIO,os,tempfile,filecmp,shutil
+from optparse import OptionParser
+
+parser = OptionParser()
+(options, args) = parser.parse_args()
+
+if len(args) < 1:
+  sys.exit(1)
+
+files = glob.glob("*.tex")
+
+if len(files) == 0:
+  sys.exit(0)
+
+outfile = tempfile.NamedTemporaryFile(delete=False)
+
+docfile = re.compile(r"""(?m)^(?!\s*%).*\\begin\{document\}""")
+inputs = re.compile(r"""(?m)^(?!\s*%).*\\input{(.*)}""")
+bibs = re.compile(r"""(?m)^(?!\s*%).*\\bibliography\{(.*)\}""")
+citations = re.compile(r"""^(?m)^(?!\s*%).*\\(?:no)?cite""")
+graphics = re.compile(r"""(?m)^(?!\s*%).*\\includegraphics(\[.*?\])?\{(.*?)\}""")
+withpdf = re.compile(r"^.*\.pdf$")
+nobibtex = re.compile(r"""(?m)^% !NOBIBTEX!""")
+
+nobibtexs = {}
+
+output = StringIO.StringIO()
+allnames = []
+
+for f in files:
+  lines = open(f, "r").read()
+  if not docfile.search(lines):
+    continue
+  input_files = []
+  bib_files = []
+  graphic_files = []
+  toprocess = [f]
+
+  docitations = False
+  dontbibtex = False
+  fbasename = os.path.splitext(f)[0]
+
+  while len(toprocess) > 0:
+    try:
+      lines = open(toprocess[0], "r").read()
+      if nobibtex.search(lines):
+        nobibtexs[toprocess[0]] = True
+      else:
+        nobibtexs[toprocess[0]] = False
+      if len(citations.findall(lines)) > 0:
+        docitations = True
+      toprocess += inputs.findall(lines)
+      b = bibs.finditer(lines)
+      for m in b:
+        allbibs = m.group(1).split(",")
+        for bib in allbibs:
+          bib_files.append(bib + ".bib")
+      g = graphics.finditer(lines)
+      for m in g:
+        if withpdf.match(m.group(2)):
+          graphic_files.append(m.group(2))
+        else:
+          path, ext = os.splitext(m.group(2))
+          if ext == '':
+            graphic_files.append(path + ".pdf")
+          else:
+            graphic_files.append(m.group(2))
+    except:
+      True
+    input_files.append(toprocess.pop(0))
+  
+  all_files = input_files
+  all_files.extend(graphic_files) 
+  all_files.extend(bib_files)
+  for file in args[1:]:
+    all_files.append(file)
+  allnames.append(fbasename)
+
+  print >>output, "%s : LOG := %s.log" % (fbasename, fbasename)
+  print >>output, "%s : PDF := %s.pdf" % (fbasename, fbasename)
+  print >>output, "%s : $(START) %s.pdf $(END)" % (fbasename, fbasename)
+  print >>output, "%s.ps : %s.pdf" % (fbasename, fbasename)
+  print >>output, "%s.pdf %s.blg : .deps %s" % (fbasename, fbasename, " ".join(all_files))
+  if docitations and not nobibtexs[f]:
+    print >>output, "\tpdflatex -shell-escape %s" % (f)
+    print >>output, "\tbibtex %s"  % (fbasename)
+    print >>output, "\tpdflatex -shell-escape %s" % (f)
+    print >>output, "\tpdflatex -shell-escape %s" % (f)
+  else:
+    print >>output, "\tpdflatex -shell-escape %s" % (f)
+    print >>output, "\tpdflatex -shell-escape %s" % (f)
+  tex_files = [all_file for all_file in all_files if all_file.endswith(".tex")]
+  print >>output, "spell-%s : %s" % (fbasename, " ".join(tex_files),)
+  print >>output, "\tispell %s" % (" ".join(tex_files),)
+    
+print >>outfile, output.getvalue(),
+print >>outfile, "PDFS = %s" % (" ".join([n + ".pdf" for n in allnames]))
+outfile.close()
+
+if not os.path.exists(args[0]) or not filecmp.cmp(outfile.name, args[0], shallow=False):
+  shutil.move(outfile.name, args[0])
+else:
+  os.unlink(outfile.name)

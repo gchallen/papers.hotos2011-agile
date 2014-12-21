@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import lib, sys
+from optparse import OptionParser
+import re
+
+parser = OptionParser()
+(options, args) = parser.parse_args()
+
+if len(args) < 2:
+  sys.exit(1)
+
+if args[0] == "-":
+  dirty_string = sys.stdin.read()
+else:
+  dirty_string = open(args[0], "r").read()
+  
+match = re.search(r"""(?ms)<clean:start>\s*(?P<excerpt>.*?)\s*<clean:end>""", dirty_string)
+if match != None:
+  dirty_string = match.group('excerpt')
+
+if args[1] == "-":
+  outfile = sys.stdout
+else:
+  outfile = open(args[1], "w")
+  
+outfile.write(lib.clean(dirty_string).encode('utf8'))
